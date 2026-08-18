@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
+
 <title>AL Gamepay</title>
 
 <style>
@@ -13,726 +14,660 @@
   padding:0;
 }
 
-:root{
-  --bg:#050505;
-  --card:#111;
-  --card2:#181818;
-  --red:#ff111c;
-  --white:#fff;
-  --muted:#aaa;
-  --border:#303030;
-}
-
 body{
   background:#050505;
-  color:white;
+  color:#fff;
   font-family:Arial,sans-serif;
-}
-
-button,input{
-  font-family:inherit;
-}
-
-.app{
-  max-width:760px;
-  margin:auto;
   min-height:100vh;
 }
 
-
-/* HEADER */
-
 header{
+  height:100px;
+  display:flex;
+  align-items:center;
+  padding:0 32px;
+  border-bottom:1px solid #222;
   position:sticky;
   top:0;
-  z-index:30;
   background:#050505;
-  border-bottom:1px solid #222;
-  padding:22px 20px;
+  z-index:20;
 }
 
 .logo{
-  font-size:25px;
+  font-size:30px;
   font-weight:900;
 }
 
 .logo span{
-  color:var(--red);
+  color:#ff1018;
 }
 
-
-/* HOME */
-
-.home{
-  padding:22px 18px;
+.container{
+  padding:40px 32px 70px;
+  max-width:800px;
+  margin:auto;
 }
 
-.search input{
+.search{
   width:100%;
   background:#111;
-  border:1px solid var(--border);
+  border:1px solid #333;
+  border-radius:26px;
+  padding:25px 28px;
   color:white;
-  padding:16px;
-  border-radius:17px;
-  font-size:16px;
+  font-size:20px;
   outline:none;
+  margin-bottom:42px;
 }
 
-.section-title{
-  margin:25px 0 15px;
-  font-size:23px;
+.search:focus{
+  border-color:#e5151d;
 }
 
-.games{
+h2{
+  font-size:30px;
+  margin-bottom:28px;
+}
+
+
+/* GAME GRID */
+
+.game-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:12px;
+  gap:14px;
 }
 
 .game-card{
-  background:transparent;
-  border:0;
-  color:white;
-  text-align:left;
+  min-width:0;
+  cursor:pointer;
 }
 
-.game-cover{
-  height:250px;
-  border-radius:20px;
-  border:1px solid #383838;
-  padding:14px;
+.game-image{
+  height:230px;
+  border-radius:28px;
+  border:1px solid #444;
+  overflow:hidden;
+  position:relative;
   display:flex;
   align-items:flex-end;
-  position:relative;
-  overflow:hidden;
-}
-
-.pubg{
+  padding:18px;
   background:
-  radial-gradient(circle at 60% 25%,rgba(255,170,0,.30),transparent 35%),
-  linear-gradient(145deg,#262015,#080808);
+  radial-gradient(circle at 70% 25%,rgba(255,0,0,.35),transparent 35%),
+  linear-gradient(145deg,#222,#090909);
 }
 
-.mlbb{
+.game-image.ml{
   background:
-  radial-gradient(circle at 65% 20%,rgba(0,120,255,.30),transparent 35%),
-  linear-gradient(145deg,#13202c,#080808);
+  radial-gradient(circle at 70% 25%,rgba(0,115,255,.35),transparent 35%),
+  linear-gradient(145deg,#222,#090909);
 }
 
-.heartopia{
+.game-image.heart{
   background:
-  radial-gradient(circle at 60% 20%,rgba(255,80,140,.30),transparent 35%),
-  linear-gradient(145deg,#26151f,#080808);
-}
-
-.region{
-  position:absolute;
-  top:10px;
-  left:10px;
-  background:#390005;
-  border:1px solid #9b0008;
-  border-radius:20px;
-  padding:6px 9px;
-  font-size:11px;
-  font-weight:bold;
-}
-
-.cover-name{
-  font-weight:900;
-  font-size:17px;
+  radial-gradient(circle at 70% 25%,rgba(255,70,140,.35),transparent 35%),
+  linear-gradient(145deg,#222,#090909);
 }
 
 .game-name{
-  margin:9px 4px;
-  font-size:14px;
+  font-size:19px;
+  font-weight:800;
+}
+
+.game-label{
+  margin-top:14px;
+  font-size:18px;
+  color:#ddd;
 }
 
 
 /* DETAIL */
 
-.detail{
+#detailPage{
   display:none;
-  padding:20px 18px 40px;
 }
 
 .back{
-  width:100%;
   background:#101010;
-  border:1px solid var(--border);
-  border-radius:20px;
-  color:white;
-  padding:17px;
-  font-size:17px;
-  text-align:left;
-  margin-bottom:18px;
-}
-
-.product-info{
-  display:flex;
-  gap:16px;
-  align-items:center;
-  background:#111;
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:16px;
-  margin-bottom:18px;
-}
-
-.product-icon{
-  width:105px;
-  height:105px;
-  min-width:105px;
-  background:
-  radial-gradient(circle at 60% 20%,rgba(255,0,0,.45),transparent 35%),
-  #1b1b1b;
   border:1px solid #333;
-  border-radius:20px;
-  display:grid;
-  place-items:center;
-  font-size:21px;
+  border-radius:30px;
+  padding:27px 30px;
+  font-size:22px;
+  margin-bottom:28px;
+  cursor:pointer;
+}
+
+.game-info{
+  background:#111;
+  border:1px solid #333;
+  border-radius:30px;
+  padding:25px;
+  display:flex;
+  gap:22px;
+  align-items:center;
+  margin-bottom:28px;
+}
+
+.detail-logo{
+  width:135px;
+  height:135px;
+  border-radius:25px;
+  background:
+  radial-gradient(circle,rgba(255,0,0,.4),#191919 60%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
   font-weight:900;
+  font-size:25px;
+  flex-shrink:0;
 }
 
-.product-info h2{
-  font-size:23px;
-  margin-bottom:8px;
+.info-title{
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:12px;
 }
 
-.product-info p{
+.info-desc{
   color:#bbb;
-  font-size:14px;
+  font-size:17px;
   line-height:1.5;
 }
 
 
-/* ORDER FORM */
+/* ORDER BOX */
 
-.form-card{
+.order-section{
   background:#111;
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:16px;
-  margin-bottom:20px;
+  border:1px solid #333;
+  border-radius:30px;
+  padding:28px;
+  margin-bottom:28px;
 }
 
 .id-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
+  gap:16px;
+  margin-bottom:18px;
 }
 
 .input{
   width:100%;
-  background:#1a1a1a;
-  border:1px solid #303030;
+  background:#1b1b1b;
+  border:1px solid #333;
+  border-radius:20px;
+  padding:22px;
   color:white;
-  padding:15px;
-  border-radius:15px;
-  font-size:16px;
+  font-size:20px;
   outline:none;
 }
 
 .input:focus{
-  border-color:var(--red);
+  border-color:#e5151d;
 }
 
-.aid-wrap{
+#aidBox{
   display:none;
-  margin-top:12px;
-}
-
-.label{
-  display:block;
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:7px;
-}
-
-.required{
-  color:red;
-}
-
-.save-row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin:16px 0;
-  color:#ddd;
-  font-size:14px;
-}
-
-.save-row input{
-  width:20px;
-  height:20px;
-  accent-color:red;
-}
-
-
-/* ORDER SUMMARY */
-
-.order-box{
-  border:1px solid #333;
-  background:#0b0b0b;
-  border-radius:18px;
-  padding:16px;
-}
-
-.order-box h3{
-  font-size:20px;
   margin-bottom:18px;
 }
 
-.order-top{
+.order-box{
+  border:1px solid #3a3a3a;
+  border-radius:25px;
+  padding:25px;
+  margin-top:22px;
+}
+
+.order-title{
+  font-size:24px;
+  font-weight:bold;
+  margin-bottom:28px;
+}
+
+.order-row{
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:15px;
-}
-
-.selected{
-  color:#bbb;
-  flex:1;
+  font-size:20px;
 }
 
 .qty{
   display:flex;
   border:1px solid #444;
-  border-radius:30px;
+  border-radius:40px;
   overflow:hidden;
 }
 
-.qty button{
-  width:44px;
-  height:44px;
-  background:#181818;
+.qty button,
+.qty div{
+  width:55px;
+  height:55px;
   border:0;
-  color:white;
-  font-size:21px;
+  background:#171717;
+  color:#fff;
+  font-size:22px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.qty span{
-  display:grid;
-  place-items:center;
-  width:48px;
-  font-weight:bold;
+.qty button{
+  cursor:pointer;
+}
+
+.qty div{
+  background:#090909;
 }
 
 .line{
-  border:none;
-  border-top:1px solid #303030;
-  margin:18px 0;
+  border-top:1px solid #333;
+  margin:24px 0;
 }
 
 .total{
-  display:flex;
-  justify-content:space-between;
-  font-size:18px;
-}
-
-.max{
-  margin-top:11px;
-  color:#777;
-  font-size:12px;
-}
-
-
-/* RECEIPT */
-
-.receipt{
-  margin-top:18px;
-}
-
-.receipt h3{
-  font-size:17px;
-  margin-bottom:9px;
-}
-
-.upload{
-  display:block;
-  background:#181818;
-  border:1px dashed #555;
-  border-radius:16px;
-  padding:16px;
-  text-align:center;
-  color:#ddd;
-}
-
-.upload input{
-  width:100%;
-  margin-top:10px;
-}
-
-#receiptPreview{
-  display:none;
-  width:100%;
-  max-height:300px;
-  object-fit:contain;
-  border-radius:15px;
-  margin-top:12px;
-  border:1px solid #333;
-}
-
-.confirm{
-  width:100%;
-  border:0;
-  margin-top:18px;
-  border-radius:16px;
-  padding:16px;
-  background:var(--red);
-  color:white;
-  font-size:17px;
-  font-weight:900;
-}
-
-.confirm:disabled{
-  background:#222;
-  color:#777;
-  border:1px solid #444;
+  font-size:24px;
+  font-weight:bold;
 }
 
 
 /* PACKAGES */
 
-.pack-section{
+.package-section{
   background:#0d0d0d;
   border:1px solid #333;
-  border-radius:22px;
-  overflow:hidden;
-}
-
-.pack-head{
-  padding:18px;
-  border-bottom:1px solid #292929;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.pack-head h3{
-  font-size:22px;
-}
-
-.mmk{
-  background:#8e0008;
-  padding:9px 16px;
-  border-radius:10px;
-  font-weight:bold;
-  font-size:13px;
-}
-
-.count{
-  border:1px solid #555;
   border-radius:30px;
-  width:45px;
-  height:38px;
-  display:grid;
-  place-items:center;
+  overflow:hidden;
+  margin-bottom:30px;
 }
 
-.pubg-tabs{
-  display:none;
-  padding:15px 16px 0;
-  gap:10px;
+.package-head{
+  padding:27px;
+  border-bottom:1px solid #333;
 }
 
-.tab{
-  flex:1;
-  background:#161616;
-  border:1px solid #383838;
-  color:white;
-  border-radius:13px;
-  padding:13px;
-  font-size:15px;
+.package-head h3{
+  font-size:27px;
+  margin-bottom:22px;
+}
+
+.currency{
+  display:inline-block;
+  padding:12px 24px;
+  background:#c60c14;
+  border-radius:12px;
   font-weight:bold;
 }
 
-.tab.active{
-  background:var(--red);
-  border-color:var(--red);
-}
-
-.package-grid{
-  padding:16px;
+.tabs{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
+  padding:22px 27px 0;
 }
 
-.package-card{
-  min-height:155px;
+.tab{
+  padding:17px;
+  text-align:center;
+  background:#151515;
   border:1px solid #333;
-  background:
-  radial-gradient(circle at 90% 90%,rgba(255,0,0,.10),transparent 30%),
-  #151515;
-  border-radius:19px;
-  color:white;
-  padding:15px;
-  text-align:left;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.package-card.active{
-  border-color:var(--red);
-  box-shadow:inset 0 0 0 1px var(--red);
-}
-
-.package-name{
+  border-radius:15px;
   font-weight:bold;
-  line-height:1.4;
+  cursor:pointer;
 }
 
-.package-price{
-  font-size:22px;
-  font-weight:900;
+.tab.active{
+  background:#e20d16;
+  border-color:#ff242c;
 }
 
-.package-price small{
-  display:block;
-  margin-top:4px;
-  font-size:15px;
-}
-
-
-/* CONFIRM MODAL */
-
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:100;
-  background:rgba(0,0,0,.80);
-  padding:20px;
-  align-items:center;
-  justify-content:center;
-}
-
-.modal-card{
-  width:100%;
-  max-width:520px;
-  background:#121212;
-  border:1px solid #383838;
-  border-radius:22px;
-  padding:20px;
-}
-
-.modal-card h2{
-  margin-bottom:17px;
-}
-
-.summary{
-  background:#090909;
-  border:1px solid #303030;
-  border-radius:16px;
-  padding:15px;
-  line-height:1.9;
-  font-size:14px;
-}
-
-.receipt-small{
-  width:100%;
-  max-height:220px;
-  object-fit:contain;
-  margin-top:13px;
-  border-radius:13px;
-}
-
-.modal-actions{
+.pack-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:17px;
+  gap:16px;
+  padding:27px;
 }
 
-.cancel{
-  padding:14px;
-  border-radius:14px;
-  background:#222;
-  color:white;
-  border:1px solid #444;
+.pack{
+  min-height:180px;
+  border:1px solid #333;
+  border-radius:24px;
+  padding:22px;
+  cursor:pointer;
+  position:relative;
+  background:
+  radial-gradient(circle at 100% 100%,rgba(150,0,0,.18),transparent 40%),
+  #111;
 }
 
-.confirm-final{
-  padding:14px;
-  border-radius:14px;
-  background:red;
-  color:white;
-  border:0;
+.pack.selected{
+  border:2px solid #ed111b;
+}
+
+.pack-name{
+  font-size:18px;
   font-weight:bold;
+  line-height:1.3;
 }
 
-.success{
-  display:none;
-  text-align:center;
-  padding:20px;
+.pack-price{
+  font-size:27px;
+  font-weight:900;
+  margin-top:25px;
+  line-height:1.25;
 }
 
-.success h2{
-  color:#fff;
-  margin-bottom:10px;
+.pack-icon{
+  position:absolute;
+  right:20px;
+  bottom:20px;
+  font-size:30px;
 }
 
-.success p{
-  color:#bbb;
+
+/* RECEIPT */
+
+.receipt-box{
+  margin-top:24px;
+  border:1px dashed #555;
+  border-radius:22px;
+  padding:24px;
+}
+
+.receipt-title{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.receipt-desc{
+  color:#999;
+  margin-bottom:18px;
   line-height:1.5;
 }
 
-@media(max-width:500px){
+.file-input{
+  width:100%;
+  background:#181818;
+  padding:16px;
+  border-radius:15px;
+  color:#ddd;
+}
 
-  .game-cover{
-    height:220px;
+.receipt-preview{
+  width:100%;
+  max-height:350px;
+  object-fit:contain;
+  border-radius:18px;
+  margin-top:18px;
+  display:none;
+  background:#080808;
+}
+
+
+/* CONFIRM */
+
+.confirm{
+  width:100%;
+  border:0;
+  border-radius:20px;
+  padding:22px;
+  font-size:21px;
+  font-weight:900;
+  background:#ff1018;
+  color:#fff;
+  margin-top:24px;
+  cursor:pointer;
+}
+
+.confirm:disabled{
+  background:#333;
+  color:#777;
+  cursor:not-allowed;
+}
+
+.notice{
+  margin-top:15px;
+  color:#999;
+  font-size:14px;
+  line-height:1.5;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  header{
+    height:95px;
+    padding:0 32px;
   }
 
-  .cover-name{
+  .logo{
+    font-size:27px;
+  }
+
+  .container{
+    padding:38px 32px 70px;
+  }
+
+  .game-grid{
+    gap:12px;
+  }
+
+  .game-image{
+    height:210px;
+    padding:14px;
+    border-radius:25px;
+  }
+
+  .game-name{
+    font-size:16px;
+  }
+
+  .game-label{
     font-size:15px;
   }
 
-  .package-card{
-    min-height:145px;
+  .detail-logo{
+    width:120px;
+    height:120px;
   }
 
+  .info-title{
+    font-size:25px;
+  }
 }
 
+@media(max-width:420px){
+
+  .container{
+    padding-left:22px;
+    padding-right:22px;
+  }
+
+  header{
+    padding-left:22px;
+    padding-right:22px;
+  }
+
+  .game-image{
+    height:185px;
+  }
+
+  .game-name{
+    font-size:14px;
+  }
+
+  .game-label{
+    font-size:14px;
+  }
+
+  .game-info{
+    padding:18px;
+    gap:15px;
+  }
+
+  .detail-logo{
+    width:100px;
+    height:110px;
+    font-size:20px;
+  }
+
+  .info-title{
+    font-size:23px;
+  }
+
+  .id-grid{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .input{
+    padding:18px 15px;
+    font-size:17px;
+  }
+
+  .pack-grid{
+    padding:18px;
+    gap:12px;
+  }
+
+  .pack{
+    min-height:165px;
+    padding:18px 15px;
+  }
+
+  .pack-price{
+    font-size:23px;
+  }
+}
 </style>
 </head>
 
-
 <body>
 
-<div class="app">
-
 <header>
-  <div class="logo">
-    AL <span>GAMEPAY</span>
-  </div>
+  <div class="logo">AL <span>GAMEPAY</span></div>
 </header>
 
 
 <!-- HOME -->
 
-<main id="homePage" class="home">
+<div class="container" id="homePage">
 
-  <div class="search">
-    <input id="searchInput" placeholder="Search games...">
+  <input
+    class="search"
+    id="search"
+    placeholder="Search games..."
+    oninput="filterGames()"
+  >
+
+  <h2>Game Top-Up</h2>
+
+  <div class="game-grid" id="gameGrid"></div>
+
+</div>
+
+
+<!-- DETAIL PAGE -->
+
+<div class="container" id="detailPage">
+
+  <div class="back" onclick="goHome()">
+    ← Back to Products
   </div>
 
-  <h2 class="section-title">
-    Game Top-Up
-  </h2>
+  <div class="game-info">
 
-  <div id="gameGrid" class="games"></div>
-
-</main>
-
-
-<!-- DETAIL -->
-
-<main id="detailPage" class="detail">
-
-  <button id="backBtn" class="back">
-    ← Back to Products
-  </button>
-
-
-  <section class="product-info">
-
-    <div id="productIcon" class="product-icon">
-      AL
+    <div class="detail-logo" id="detailLogo">
+      GAME
     </div>
 
     <div>
-      <h2 id="productName">Game</h2>
-
-      <p id="productDesc">
-        User ID နှင့် Zone ID ဖြည့်ပါ။
-      </p>
+      <div class="info-title" id="detailTitle"></div>
+      <div class="info-desc" id="detailDesc"></div>
     </div>
 
-  </section>
+  </div>
 
 
-  <section class="form-card">
+  <div class="order-section">
 
     <div class="id-grid">
 
       <input
+        class="input"
         id="userId"
-        class="input"
         placeholder="User ID"
+        inputmode="numeric"
+        oninput="updateConfirm()"
       >
 
       <input
+        class="input"
         id="zoneId"
-        class="input"
         placeholder="Zone ID"
+        inputmode="numeric"
+        oninput="updateConfirm()"
       >
 
     </div>
 
-
-    <div id="aidWrap" class="aid-wrap">
-
-      <label class="label">
-        AID
-        <span class="required">*</span>
-      </label>
-
+    <div id="aidBox">
       <input
-        id="aid"
         class="input"
+        id="aid"
         placeholder="AID"
+        oninput="updateConfirm()"
       >
-
     </div>
-
-
-    <label class="save-row">
-
-      <input type="checkbox">
-
-      Save ID information for next purchase on this device
-
-    </label>
 
 
     <div class="order-box">
 
-      <h3>Your Order</h3>
+      <div class="order-title">
+        Your Order
+      </div>
 
-      <div class="order-top">
+      <div class="order-row">
 
-        <div id="selectedText" class="selected">
+        <span id="selectedText">
           Select a package
-        </div>
+        </span>
 
         <div class="qty">
 
-          <button id="minusBtn">−</button>
+          <button onclick="changeQty(-1)">
+            −
+          </button>
 
-          <span id="qtyText">1</span>
+          <div id="qty">
+            1
+          </div>
 
-          <button id="plusBtn">+</button>
+          <button onclick="changeQty(1)">
+            +
+          </button>
 
         </div>
 
       </div>
 
+      <div class="line"></div>
 
-      <hr class="line">
-
-
-      <div class="total">
+      <div class="order-row total">
 
         <span>Total</span>
 
-        <strong id="totalText">
-          —
-        </strong>
+        <span id="total">
+          -
+        </span>
 
       </div>
 
-      <div class="max">
+      <div class="notice">
         Max 10 per purchase.
       </div>
 
@@ -741,909 +676,742 @@ header{
 
     <!-- RECEIPT -->
 
-    <div class="receipt">
+    <div class="receipt-box">
 
-      <h3>ငွေလွှဲပြေစာ *</h3>
+      <div class="receipt-title">
+        ငွေလွှဲပြေစာ
+      </div>
 
-      <label class="upload">
+      <div class="receipt-desc">
+        ငွေလွှဲပြီးပါက Screenshot / Receipt ပုံကို
+        ဒီနေရာမှာ ထည့်ပေးပါ။
+      </div>
 
-        ငွေလွှဲပြေစာ Screenshot / Photo ရွေးပါ
+      <input
+        class="file-input"
+        id="receipt"
+        type="file"
+        accept="image/*"
+        onchange="previewReceipt(event)"
+      >
 
-        <input
-          id="receiptInput"
-          type="file"
-          accept="image/*"
-        >
-
-      </label>
-
-      <img id="receiptPreview">
+      <img
+        id="receiptPreview"
+        class="receipt-preview"
+        alt="Receipt Preview"
+      >
 
     </div>
 
 
     <button
-      id="confirmBtn"
       class="confirm"
-      disabled>
-
+      id="confirmBtn"
+      onclick="confirmOrder()"
+      disabled
+    >
       Confirm Order
-
     </button>
 
-  </section>
+  </div>
 
 
-  <section class="pack-section">
+  <div class="package-section">
 
-    <div class="pack-head">
+    <div class="package-head">
 
-      <div>
+      <h3>Available Packages</h3>
 
-        <h3>Available Packages</h3>
-
-        <div style="margin-top:12px">
-          <span class="mmk">MMK</span>
-        </div>
-
-      </div>
-
-      <div id="packCount" class="count">
-        0
+      <div class="currency">
+        MMK
       </div>
 
     </div>
-
-
-    <div id="pubgTabs" class="pubg-tabs">
-
-      <button
-        id="ucTab"
-        class="tab active">
-
-        UC
-
-      </button>
-
-      <button
-        id="packsTab"
-        class="tab">
-
-        Packs
-
-      </button>
-
-    </div>
-
 
     <div
-      id="packageGrid"
-      class="package-grid">
-    </div>
-
-  </section>
-
-</main>
-
-</div>
-
-
-
-<!-- CONFIRM MODAL -->
-
-<div id="modal" class="modal">
-
-  <div class="modal-card">
-
-    <div id="reviewArea">
-
-      <h2>Confirm Order</h2>
+      class="tabs"
+      id="pubgTabs"
+      style="display:none"
+    >
 
       <div
-        id="summary"
-        class="summary">
+        class="tab active"
+        id="ucTab"
+        onclick="setPubgTab('uc')"
+      >
+        UC
       </div>
 
-      <img
-        id="modalReceipt"
-        class="receipt-small">
-
-      <div class="modal-actions">
-
-        <button
-          id="cancelBtn"
-          class="cancel">
-
-          Back
-
-        </button>
-
-        <button
-          id="finalBtn"
-          class="confirm-final">
-
-          Confirm
-
-        </button>
-
+      <div
+        class="tab"
+        id="packTab"
+        onclick="setPubgTab('packs')"
+      >
+        Packs
       </div>
 
     </div>
 
-
-    <div
-      id="successArea"
-      class="success">
-
-      <h2>✅ Order Confirmed</h2>
-
-      <p>
-        Order အချက်အလက်များ အဆင်သင့်ဖြစ်ပါပြီ။
-        Telegram Bot ပို့ခြင်းကို နောက်အဆင့်မှာ ချိတ်ဆက်ပါမယ်။
-      </p>
-
-      <button
-        id="doneBtn"
-        class="confirm"
-        style="margin-top:20px">
-
-        Done
-
-      </button>
-
-    </div>
+    <div class="pack-grid" id="packageGrid"></div>
 
   </div>
 
 </div>
 
 
-
 <script>
 
-var games = [
+/* ===============================
+   GAME DATA
+================================ */
+
+const games = [
 
 {
- id:"pubg",
- name:"PUBG Mobile",
- short:"PUBG",
- className:"pubg",
- region:"REGIONS 4",
+  id:"pubg",
+  name:"PUBG Mobile",
+  short:"PUBG",
+  className:"",
+  description:
+  "Waiting Time (5 seconds) ⚡ User ID နှင့် Zone ID ဖြည့်ပါ။",
 
- description:
- "Waiting Time (5 seconds) ⚡ User ID နှင့် Zone ID ဖြည့်ပါ။",
+  uc:[
+    ["60 UC",4000],
+    ["325 UC",19900],
+    ["660 UC",39900],
+    ["1800 UC",99700],
+    ["3850 UC",198400],
+    ["8100 UC",394600]
+  ],
 
- uc:[
-  ["60 UC",4000],
-  ["325 UC",19900],
-  ["660 UC",39900],
-  ["1800 UC",99700],
-  ["3850 UC",198400],
-  ["8100 UC",394600]
- ],
-
- packs:[
-  ["First Purchase Pack",3900],
-  ["Upgradable Firearm Pack",11700],
-  ["Mythic Emblem Pack",19600],
-  ["Weekly Mythic Pack",11800],
-  ["Prime - 1 Month",3900],
-  ["Prime Plus - 1 Month",39200],
-  ["Weekly Deal Pack 1",4000],
-  ["Weekly Deal Pack 2",11800],
-  ["Prime - 3 Months",11700],
-  ["Prime - 6 Months",23500],
-  ["Prime - 12 Months",47000],
-  ["Prime Plus - 3 Month",117600],
-  ["Prime Plus - 6 Months",233400],
-  ["Prime Plus - 12 Months",467000],
-  ["Elite Pass Plus LV1-100",107800]
- ]
+  packs:[
+    ["First Purchase Pack",3900],
+    ["Upgradable Firearm Pack",11700],
+    ["Mythic Emblem Pack",19600],
+    ["Weekly Mythic Pack",11800],
+    ["Prime - 1 Month",3900],
+    ["Prime Plus - 1 Month",39200],
+    ["Weekly Deal Pack 1",4000],
+    ["Weekly Deal Pack 2",11800],
+    ["Prime - 3 Months",11700],
+    ["Prime - 6 Months",23500],
+    ["Prime - 12 Months",47000],
+    ["Prime Plus - 3 Month",117600],
+    ["Prime Plus - 6 Months",233400],
+    ["Prime Plus - 12 Months",467000],
+    ["Elite Pass Plus LV1-100",107800]
+  ]
 },
 
-
 {
- id:"mlbb",
- name:"Mobile Legends",
- short:"MLBB",
- className:"mlbb",
- region:"REGIONS 2",
+  id:"mlbb",
+  name:"Mobile Legends",
+  short:"MLBB",
+  className:"ml",
+  description:
+  "User ID နှင့် Zone ID ဖြည့်ပြီး Package ရွေးပါ။",
 
- description:
- "Waiting Time (5 seconds) ⚡ User ID နှင့် Zone ID ဖြည့်ပါ။",
-
- packages:[
-  ["55 Diamond",3200],
-  ["165 Diamond",9700],
-  ["275 Diamond",15600],
-  ["565 Diamond",32100],
-  ["Weekly Pass",6300],
-  ["86 Diamond",5100],
-  ["172 Diamond",10200],
-  ["257 Diamond",14800],
-  ["706 Diamond",40000],
-  ["2195 Diamond",121000],
-  ["3688 Diamond",201800],
-  ["5532 Diamond",304700],
-  ["9288 Diamond",506100],
-  ["Monthly Epic Bundle",16400],
-  ["Weekly Elite Bundle",3200],
-  ["Twilight Pass",33500]
- ]
+  packages:[
+    ["55 Diamond",3200],
+    ["165 Diamond",9700],
+    ["275 Diamond",15600],
+    ["565 Diamond",32100],
+    ["Weekly Pass",6300],
+    ["86 Diamond",5100],
+    ["172 Diamond",10200],
+    ["257 Diamond",14800],
+    ["706 Diamond",40000],
+    ["2195 Diamond",121000],
+    ["3688 Diamond",201800],
+    ["5532 Diamond",304700],
+    ["9288 Diamond",506100],
+    ["Monthly Epic Bundle",16400],
+    ["Weekly Elite Bundle",3200],
+    ["Twilight Pass",33500]
+  ]
 },
 
-
 {
- id:"heartopia",
- name:"Heartopia",
- short:"HT",
- className:"heartopia",
- region:"",
+  id:"heartopia",
+  name:"Heartopia",
+  short:"HEART",
+  className:"heart",
+  description:
+  "User ID, Zone ID နှင့် AID ကို ဖြည့်ပေးပါ။",
 
- description:
- "User ID နှင့် AID မှန်ကန်စွာ ဖြည့်ပေးပါ။",
-
- packages:[
-  ["20 Heart Diamond",2400],
-  ["60 Heart Diamond",4700],
-  ["320 Heart Diamond",23400],
-  ["730 Heart Diamond",47200],
-  ["1370 Heart Diamond",88300],
-  ["2130 Heart Diamond",136000],
-  ["3550 Heart Diamond",224600],
-  ["7050 Heart Diamond",436700]
- ]
+  packages:[
+    ["20 Heart Diamond",2400],
+    ["60 Heart Diamond",4700],
+    ["320 Heart Diamond",23400],
+    ["730 Heart Diamond",47200],
+    ["1370 Heart Diamond",88300],
+    ["2130 Heart Diamond",136000],
+    ["3550 Heart Diamond",224600],
+    ["7050 Heart Diamond",436700]
+  ]
 }
 
 ];
 
 
-var currentGame = null;
-var selectedPackage = null;
-var quantity = 1;
-var receiptData = null;
+/* ===============================
+   VARIABLES
+================================ */
+
+let currentGame = null;
+let selectedPackage = null;
+let quantity = 1;
+let pubgTab = "uc";
+let receiptSelected = false;
 
 
-var gameGrid =
-document.getElementById("gameGrid");
-
-var homePage =
-document.getElementById("homePage");
-
-var detailPage =
-document.getElementById("detailPage");
-
-var userId =
-document.getElementById("userId");
-
-var zoneId =
-document.getElementById("zoneId");
-
-var aid =
-document.getElementById("aid");
-
-var aidWrap =
-document.getElementById("aidWrap");
-
-var selectedText =
-document.getElementById("selectedText");
-
-var qtyText =
-document.getElementById("qtyText");
-
-var totalText =
-document.getElementById("totalText");
-
-var confirmBtn =
-document.getElementById("confirmBtn");
-
-var packageGrid =
-document.getElementById("packageGrid");
-
-var pubgTabs =
-document.getElementById("pubgTabs");
-
-var receiptInput =
-document.getElementById("receiptInput");
-
-var receiptPreview =
-document.getElementById("receiptPreview");
-
-
+/* ===============================
+   HOME GAMES
+================================ */
 
 function renderGames(list){
 
- gameGrid.innerHTML="";
+  const grid =
+    document.getElementById("gameGrid");
 
- list.forEach(function(game){
+  grid.innerHTML = "";
 
-  var button =
-  document.createElement("button");
+  list.forEach(game=>{
 
-  button.className="game-card";
+    const card =
+      document.createElement("div");
 
-  var region="";
+    card.className =
+      "game-card";
 
-  if(game.region){
+    card.onclick =
+      ()=>openGame(game.id);
 
-   region=
-   '<div class="region">'+
-   game.region+
-   '</div>';
+    card.innerHTML = `
+
+      <div class="game-image ${game.className}">
+        <div class="game-name">
+          ${game.name}
+        </div>
+      </div>
+
+      <div class="game-label">
+        ${game.name}
+      </div>
+
+    `;
+
+    grid.appendChild(card);
+
+  });
+
+}
+
+
+/* ===============================
+   SEARCH
+================================ */
+
+function filterGames(){
+
+  const value =
+    document
+    .getElementById("search")
+    .value
+    .toLowerCase();
+
+  const filtered =
+    games.filter(game=>
+      game.name
+      .toLowerCase()
+      .includes(value)
+    );
+
+  renderGames(filtered);
+
+}
+
+
+/* ===============================
+   OPEN GAME
+================================ */
+
+function openGame(id){
+
+  currentGame =
+    games.find(game=>game.id===id);
+
+  if(!currentGame){
+    return;
+  }
+
+  selectedPackage = null;
+  quantity = 1;
+  receiptSelected = false;
+
+  document.getElementById("homePage")
+    .style.display="none";
+
+  document.getElementById("detailPage")
+    .style.display="block";
+
+  document.getElementById("detailTitle")
+    .textContent=currentGame.name;
+
+  document.getElementById("detailLogo")
+    .textContent=currentGame.short;
+
+  document.getElementById("detailDesc")
+    .textContent=currentGame.description;
+
+  document.getElementById("userId").value="";
+  document.getElementById("zoneId").value="";
+  document.getElementById("aid").value="";
+
+  document.getElementById("qty")
+    .textContent="1";
+
+  document.getElementById("selectedText")
+    .textContent="Select a package";
+
+  document.getElementById("total")
+    .textContent="-";
+
+  document.getElementById("receipt")
+    .value="";
+
+  document.getElementById("receiptPreview")
+    .style.display="none";
+
+
+  /* Heartopia AID */
+
+  document.getElementById("aidBox")
+    .style.display =
+      currentGame.id==="heartopia"
+      ? "block"
+      : "none";
+
+
+  /* PUBG tabs */
+
+  if(currentGame.id==="pubg"){
+
+    document.getElementById("pubgTabs")
+      .style.display="grid";
+
+    setPubgTab("uc");
+
+  }else{
+
+    document.getElementById("pubgTabs")
+      .style.display="none";
+
+    renderPackages(
+      currentGame.packages
+    );
 
   }
 
-  button.innerHTML=
+  updateConfirm();
 
-  '<div class="game-cover '+game.className+'">'+
-
-   region+
-
-   '<div class="cover-name">'+
-   game.name+
-   '</div>'+
-
-  '</div>'+
-
-  '<div class="game-name">'+
-  game.name+
-  '</div>';
-
-
-  button.onclick=function(){
-
-   openGame(game);
-
-  };
-
-
-  gameGrid.appendChild(button);
-
- });
+  window.scrollTo(0,0);
 
 }
 
 
+/* ===============================
+   PUBG TAB
+================================ */
 
-function openGame(game){
+function setPubgTab(type){
 
- currentGame=game;
+  pubgTab = type;
 
- selectedPackage=null;
+  selectedPackage = null;
+  quantity = 1;
 
- quantity=1;
+  document.getElementById("qty")
+    .textContent="1";
 
- receiptData=null;
+  document.getElementById("selectedText")
+    .textContent="Select a package";
 
- qtyText.textContent="1";
-
- selectedText.textContent=
- "Select a package";
-
- totalText.textContent="—";
-
- confirmBtn.disabled=true;
-
- receiptInput.value="";
-
- receiptPreview.style.display="none";
+  document.getElementById("total")
+    .textContent="-";
 
 
- document.getElementById(
- "productName"
- ).textContent=game.name;
-
-
- document.getElementById(
- "productIcon"
- ).textContent=game.short;
-
-
- document.getElementById(
- "productDesc"
- ).textContent=game.description;
-
-
- userId.value="";
- zoneId.value="";
- aid.value="";
-
-
- if(game.id==="heartopia"){
-
-  aidWrap.style.display="block";
-
- }else{
-
-  aidWrap.style.display="none";
-
- }
-
-
- if(game.id==="pubg"){
-
-  pubgTabs.style.display="flex";
-
-  document
-  .getElementById("ucTab")
-  .classList.add("active");
-
-  document
-  .getElementById("packsTab")
-  .classList.remove("active");
-
-  renderPackages(game.uc);
-
- }else{
-
-  pubgTabs.style.display="none";
-
-  renderPackages(game.packages);
-
- }
-
-
- homePage.style.display="none";
-
- detailPage.style.display="block";
-
- window.scrollTo(0,0);
-
-}
-
-
-
-function renderPackages(list){
-
- packageGrid.innerHTML="";
-
- document.getElementById(
- "packCount"
- ).textContent=list.length;
-
-
- list.forEach(function(item){
-
-  var name=item[0];
-
-  var price=item[1];
-
-
-  var button=
-  document.createElement("button");
-
-  button.className="package-card";
-
-
-  button.innerHTML=
-
-  '<div class="package-name">'+
-  name+
-  '</div>'+
-
-  '<div class="package-price">'+
-  price.toLocaleString()+
-  '<small>MMK</small>'+
-  '</div>';
-
-
-  button.onclick=function(){
-
-   document
-   .querySelectorAll(
-   ".package-card"
-   )
-   .forEach(function(card){
-
-    card.classList.remove(
-    "active"
+  document.getElementById("ucTab")
+    .classList.toggle(
+      "active",
+      type==="uc"
     );
 
-   });
+  document.getElementById("packTab")
+    .classList.toggle(
+      "active",
+      type==="packs"
+    );
 
 
-   button.classList.add(
-   "active"
-   );
+  if(type==="uc"){
+
+    renderPackages(
+      currentGame.uc
+    );
+
+  }else{
+
+    renderPackages(
+      currentGame.packs
+    );
+
+  }
+
+  updateConfirm();
+
+}
 
 
-   selectedPackage={
-    name:name,
-    price:price
-   };
+/* ===============================
+   PACKAGES
+================================ */
+
+function renderPackages(packages){
+
+  const grid =
+    document.getElementById(
+      "packageGrid"
+    );
+
+  grid.innerHTML="";
+
+  packages.forEach((pack,index)=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className="pack";
+
+    div.onclick =
+      ()=>selectPackage(
+        pack,
+        div
+      );
+
+    div.innerHTML = `
+
+      <div class="pack-name">
+        ${pack[0]}
+      </div>
+
+      <div class="pack-price">
+        ${Number(pack[1]).toLocaleString()}
+        <br>
+        MMK
+      </div>
+
+      <div class="pack-icon">
+        🎫
+      </div>
+
+    `;
+
+    grid.appendChild(div);
+
+  });
+
+}
 
 
-   quantity=1;
+/* ===============================
+   SELECT PACKAGE
+================================ */
 
-   qtyText.textContent="1";
+function selectPackage(pack,element){
 
-   selectedText.textContent=name;
+  selectedPackage = {
+    name:pack[0],
+    price:Number(pack[1])
+  };
 
-   updateTotal();
+  quantity=1;
 
-   validateOrder();
+  document.getElementById("qty")
+    .textContent=quantity;
+
+  document
+    .querySelectorAll(".pack")
+    .forEach(el=>
+      el.classList.remove("selected")
+    );
+
+  element.classList.add("selected");
+
+  updateOrder();
+  updateConfirm();
+
+}
+
+
+/* ===============================
+   QUANTITY
+================================ */
+
+function changeQty(amount){
+
+  if(!selectedPackage){
+    return;
+  }
+
+  quantity += amount;
+
+  if(quantity<1){
+    quantity=1;
+  }
+
+  if(quantity>10){
+    quantity=10;
+  }
+
+  document.getElementById("qty")
+    .textContent=quantity;
+
+  updateOrder();
+
+}
+
+
+/* ===============================
+   ORDER TOTAL
+================================ */
+
+function updateOrder(){
+
+  if(!selectedPackage){
+
+    document.getElementById("selectedText")
+      .textContent="Select a package";
+
+    document.getElementById("total")
+      .textContent="-";
+
+    return;
+  }
+
+  document.getElementById("selectedText")
+    .textContent =
+      selectedPackage.name;
+
+  const total =
+    selectedPackage.price *
+    quantity;
+
+  document.getElementById("total")
+    .textContent =
+      total.toLocaleString()
+      +" MMK";
+
+}
+
+
+/* ===============================
+   RECEIPT PREVIEW
+================================ */
+
+function previewReceipt(event){
+
+  const file =
+    event.target.files[0];
+
+  const preview =
+    document.getElementById(
+      "receiptPreview"
+    );
+
+  if(!file){
+
+    receiptSelected=false;
+    preview.style.display="none";
+
+    updateConfirm();
+    return;
+  }
+
+  if(!file.type.startsWith("image/")){
+
+    alert(
+      "ငွေလွှဲပြေစာ ပုံဖိုင်ကိုသာ ထည့်ပေးပါ။"
+    );
+
+    event.target.value="";
+    receiptSelected=false;
+
+    updateConfirm();
+    return;
+  }
+
+  receiptSelected=true;
+
+  const reader =
+    new FileReader();
+
+  reader.onload=function(e){
+
+    preview.src=e.target.result;
+    preview.style.display="block";
 
   };
 
+  reader.readAsDataURL(file);
 
-  packageGrid.appendChild(button);
-
- });
-
-}
-
-
-
-function updateTotal(){
-
- if(!selectedPackage){
-
-  totalText.textContent="—";
-
-  return;
-
- }
-
- var total=
- selectedPackage.price*
- quantity;
-
- totalText.textContent=
- total.toLocaleString()+
- " MMK";
+  updateConfirm();
 
 }
 
 
+/* ===============================
+   CONFIRM BUTTON
+================================ */
 
-document
-.getElementById("minusBtn")
-.onclick=function(){
+function updateConfirm(){
 
- if(quantity>1){
+  const userId =
+    document
+    .getElementById("userId")
+    .value
+    .trim();
 
-  quantity--;
+  const zoneId =
+    document
+    .getElementById("zoneId")
+    .value
+    .trim();
 
-  qtyText.textContent=quantity;
+  const aid =
+    document
+    .getElementById("aid")
+    .value
+    .trim();
 
-  updateTotal();
+  let valid =
+    currentGame &&
+    selectedPackage &&
+    userId &&
+    zoneId &&
+    receiptSelected;
 
- }
+  if(
+    currentGame &&
+    currentGame.id==="heartopia"
+  ){
+    valid = valid && aid;
+  }
 
-};
-
-
-
-document
-.getElementById("plusBtn")
-.onclick=function(){
-
- if(quantity<10){
-
-  quantity++;
-
-  qtyText.textContent=quantity;
-
-  updateTotal();
-
- }
-
-};
-
-
-
-document
-.getElementById("ucTab")
-.onclick=function(){
-
- this.classList.add("active");
-
- document
- .getElementById("packsTab")
- .classList.remove("active");
-
- resetSelection();
-
- renderPackages(
- currentGame.uc
- );
-
-};
-
-
-
-document
-.getElementById("packsTab")
-.onclick=function(){
-
- this.classList.add("active");
-
- document
- .getElementById("ucTab")
- .classList.remove("active");
-
- resetSelection();
-
- renderPackages(
- currentGame.packs
- );
-
-};
-
-
-
-function resetSelection(){
-
- selectedPackage=null;
-
- quantity=1;
-
- qtyText.textContent="1";
-
- selectedText.textContent=
- "Select a package";
-
- totalText.textContent="—";
-
- validateOrder();
+  document.getElementById(
+    "confirmBtn"
+  ).disabled = !valid;
 
 }
 
 
+/* ===============================
+   CONFIRM ORDER
+================================ */
 
-receiptInput.onchange=function(){
+function confirmOrder(){
 
- var file=this.files[0];
+  if(!currentGame ||
+     !selectedPackage){
+    return;
+  }
 
- if(!file){
+  const userId =
+    document
+    .getElementById("userId")
+    .value
+    .trim();
 
-  receiptData=null;
+  const zoneId =
+    document
+    .getElementById("zoneId")
+    .value
+    .trim();
 
-  validateOrder();
+  const aid =
+    document
+    .getElementById("aid")
+    .value
+    .trim();
 
-  return;
+  const total =
+    selectedPackage.price *
+    quantity;
 
- }
 
+  let message =
+`Order Confirmed!
 
- if(!file.type.startsWith("image/")){
+Game: ${currentGame.name}
+
+Package:
+${selectedPackage.name}
+
+Quantity: ${quantity}
+
+Total:
+${total.toLocaleString()} MMK
+
+User ID:
+${userId}
+
+Zone ID:
+${zoneId}`;
+
+  if(currentGame.id==="heartopia"){
+
+    message +=
+`\n\nAID:\n${aid}`;
+
+  }
+
 
   alert(
-  "Image file ပဲရွေးပေးပါ။"
+    "Order အချက်အလက်များ ပြည့်စုံပါပြီ။\n\n"+
+    "Telegram Bot ချိတ်ပြီးပါက ဒီနေရာကနေ Order + Receipt ကို Telegram သို့ပို့ပါမယ်။"
   );
 
-  this.value="";
-
-  return;
-
- }
-
-
- var reader=
- new FileReader();
-
-
- reader.onload=function(e){
-
-  receiptData=e.target.result;
-
-  receiptPreview.src=
-  receiptData;
-
-  receiptPreview.style.display=
-  "block";
-
-  validateOrder();
-
- };
-
-
- reader.readAsDataURL(file);
-
-};
-
-
-
-function validateOrder(){
-
- var valid=true;
-
-
- if(!currentGame){
-
-  valid=false;
-
- }
-
-
- if(
- userId.value.trim()===""
- ){
-
-  valid=false;
-
- }
-
-
- if(
- currentGame &&
- currentGame.id!=="heartopia" &&
- zoneId.value.trim()===""
- ){
-
-  valid=false;
-
- }
-
-
- if(
- currentGame &&
- currentGame.id==="heartopia" &&
- aid.value.trim()===""
- ){
-
-  valid=false;
-
- }
-
-
- if(!selectedPackage){
-
-  valid=false;
-
- }
-
-
- if(!receiptData){
-
-  valid=false;
-
- }
-
-
- confirmBtn.disabled=
- !valid;
+  console.log(message);
 
 }
 
 
+/* ===============================
+   BACK HOME
+================================ */
 
-userId.oninput=
-validateOrder;
+function goHome(){
 
-zoneId.oninput=
-validateOrder;
+  document.getElementById(
+    "detailPage"
+  ).style.display="none";
 
-aid.oninput=
-validateOrder;
+  document.getElementById(
+    "homePage"
+  ).style.display="block";
 
+  window.scrollTo(0,0);
 
-
-confirmBtn.onclick=function(){
-
- if(this.disabled){
-  return;
- }
-
-
- var total=
- selectedPackage.price*
- quantity;
+}
 
 
- var text=
+/* ===============================
+   INITIAL LOAD
+================================ */
 
- "<b>Game:</b> "+
- currentGame.name+
- "<br>"+
+renderGames(games);
 
- "<b>User ID:</b> "+
- escapeHtml(
- userId.value
- )+
- "<br>";
+</script>
 
-
- if(
- currentGame.id!=="heartopia"
- ){
-
-  text+=
-
-  "<b>Zone ID:</b> "+
-  escapeHtml(
-  zoneId.value
-  )+
-  "<br>";
-
- }
-
-
- if(
- currentGame.id==="heartopia"
- ){
-
-  text+=
-
-  "<b>AID:</b> "+
-  escapeHtml(
-  aid.value
-  )+
-  "<br>";
-
- }
-
-
- text+=
-
- "<b>Package:</b> "+
- selectedPackage.name+
- "<br>"+
-
- "<b>Quantity:</b> "+
- quantity+
- "<br>"+
-
- "<b>Total:</b> "+
- total.toLocaleString()+
- " MMK";
-
-
- document.getElementById(
- "summary"
- ).innerHTML=text;
-
-
- document.getElementById(
- "modalReceipt"
- ).src=receiptData;
-
-
- document.getElementById(
- "modal"
- ).style.display="flex";
-
-};
-
-
-
-document
-.getElementById("cancelBtn")
-.onclick=function(){
-
- document.getElementById(
- "modal"
- ).style.display="none";
-
-};
-
-
-
-document
-.getElementById("finalBtn")
-.onclick=function(){
-
- document.getElementById(
- "reviewArea"
- ).style.display="none";
-
- document.getElementById(
- "successArea"
- ).style.display="block";
-
-};
-
-
-
-document
-.getElementById("doneBtn")
-.onclick=function(){
-
- location.reload();
-
-};
-
-
-
-document
-.getElement
+</body>
+</html>
