@@ -2,1285 +2,689 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#050505">
-
 <title>AL Gamepay</title>
 
 <style>
-
 *{
   box-sizing:border-box;
   margin:0;
-  padding:0;
+  padding:0
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
   background:#050505;
   color:#fff;
-  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh
 }
 
 button,input{
-  font:inherit;
+  font:inherit
 }
 
 button{
-  cursor:pointer;
+  cursor:pointer
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
 .header{
-  height:125px;
+  height:105px;
   display:flex;
   align-items:center;
-  padding:0 32px;
-  border-bottom:1px solid #242424;
-  background:#050505;
+  padding:0 20px;
+  border-bottom:1px solid #242424
 }
 
 .logo{
-  font-size:34px;
-  font-weight:900;
-  letter-spacing:-1px;
+  font-size:28px;
+  font-weight:900
 }
 
 .logo span{
-  color:#ff1515;
+  color:#ff1515
 }
 
-
-/* =========================
-   PAGE
-========================= */
-
 .page{
-  display:none;
+  display:none
 }
 
 .page.active{
-  display:block;
+  display:block
 }
 
-.home{
-  padding:40px 32px;
+.home,
+.product{
+  padding:25px 18px 60px
 }
-
-
-/* =========================
-   SEARCH
-========================= */
 
 .search{
   width:100%;
-  height:92px;
+  height:72px;
+  padding:0 22px;
   border:1px solid #333;
-  border-radius:28px;
+  border-radius:22px;
   background:#111;
-  color:white;
-  font-size:27px;
-  padding:0 28px;
-  outline:none;
+  color:#fff;
+  font-size:21px;
+  outline:none
 }
 
 .search::placeholder{
-  color:#777;
+  color:#777
 }
 
 .title{
-  margin-top:44px;
-  font-size:36px;
-  font-weight:800;
+  margin:35px 0 28px;
+  font-size:29px
 }
 
-
-/* =========================
-   GAME CARDS
-========================= */
+/* HOME GAME CARDS */
 
 .game-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:16px;
-  margin-top:30px;
-}
-
-.game-wrap{
-  min-width:0;
+  gap:10px
 }
 
 .game-card{
-  height:280px;
-  border-radius:28px;
+  height:210px;
   border:1px solid #3b3b3b;
-
-  background-position:center;
+  border-radius:22px;
   background-size:cover;
-  background-repeat:no-repeat;
-
+  background-position:center;
   position:relative;
-  overflow:hidden;
-
-  transition:.2s;
+  overflow:hidden
 }
 
 .game-card::after{
   content:"";
   position:absolute;
   inset:0;
-
-  background:
-  linear-gradient(
-    to top,
-    rgba(0,0,0,.78),
-    rgba(0,0,0,.05) 60%
-  );
-}
-
-.game-card:active{
-  transform:scale(.97);
+  background:linear-gradient(to top,rgba(0,0,0,.78),transparent 60%)
 }
 
 .game-card.pubg{
-  background-image:url("pubg.jpg");
+  background-image:url("pubg.jpg")
 }
 
 .game-card.mlbb{
-  background-image:url("mlbb.jpg");
+  background-image:url("mlbb.jpg")
 }
 
-.game-card.heartopia{
-  background-image:url("heartopia.jpg");
+.game-card.heart{
+  background-image:url("heartopia.jpg")
 }
 
 .game-name{
   position:absolute;
-  left:16px;
-  bottom:15px;
+  left:12px;
+  right:8px;
+  bottom:12px;
   z-index:2;
-
-  font-size:20px;
-  font-weight:800;
+  font-size:16px;
+  font-weight:800
 }
 
 .game-label{
-  margin:17px 5px 0;
-  font-size:20px;
+  margin:14px 5px 0;
   color:#ddd;
+  font-size:15px
 }
 
-
-/* =========================
-   PRODUCT PAGE
-========================= */
-
-.product-page{
-  padding:32px;
-}
+/* PRODUCT */
 
 .back{
   width:100%;
-  padding:30px;
-  border-radius:28px;
-
+  padding:24px;
+  margin-bottom:24px;
+  border:1px solid #333;
+  border-radius:24px;
   background:#101010;
-  border:1px solid #3b3b3b;
-
-  color:white;
+  color:#fff;
   text-align:left;
-
-  font-size:25px;
-  margin-bottom:28px;
+  font-size:21px
 }
 
 .game-info{
-  border:1px solid #393939;
-  border-radius:30px;
-
-  padding:25px;
-
   display:flex;
   align-items:center;
-  gap:22px;
-
-  background:#111;
+  gap:16px;
+  padding:18px;
+  border:1px solid #333;
+  border-radius:26px;
+  background:#111
 }
 
-.game-icon{
-  width:150px;
-  height:150px;
-
-  flex:0 0 150px;
-
-  border-radius:27px;
-
-  border:1px solid #333;
-
+.game-cover{
+  width:100px;
+  height:110px;
+  flex:0 0 100px;
+  border-radius:20px;
   background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  background-position:center
 }
 
 .info-title{
-  font-size:35px;
+  font-size:24px;
   font-weight:800;
-  margin-bottom:12px;
+  margin-bottom:8px
 }
 
 .info-desc{
-  color:#bbb;
-  font-size:20px;
-  line-height:1.5;
+  color:#aaa;
+  font-size:15px;
+  line-height:1.5
 }
 
-
-/* =========================
-   ORDER BOX
-========================= */
+/* INPUT + ORDER */
 
 .order-box{
-  margin-top:28px;
-
-  padding:28px;
-
-  border:1px solid #3b3b3b;
-  border-radius:30px;
-
-  background:#101010;
+  margin-top:24px;
+  padding:17px;
+  border:1px solid #333;
+  border-radius:26px;
+  background:#101010
 }
 
 .inputs{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:16px;
+  gap:10px
 }
 
 .field{
   width:100%;
-  height:82px;
-
-  border-radius:23px;
+  height:64px;
+  padding:0 16px;
   border:1px solid #333;
-
-  background:#1b1b1b;
-
+  border-radius:18px;
+  background:#1a1a1a;
   color:#fff;
-
-  padding:0 24px;
-
-  font-size:23px;
-
-  outline:none;
-}
-
-.field::placeholder{
-  color:#888;
+  font-size:18px;
+  outline:none
 }
 
 .save-row{
   display:flex;
+  gap:12px;
   align-items:center;
-
-  gap:15px;
-
-  margin:25px 0;
-
-  color:#ddd;
-
-  font-size:18px;
+  margin:20px 0;
+  color:#ccc;
+  font-size:15px;
+  line-height:1.4
 }
 
 .save-row input{
-  width:30px;
-  height:30px;
+  width:26px;
+  height:26px
 }
 
-
-/* =========================
-   ORDER SUMMARY
-========================= */
-
 .summary{
-  border:1px solid #3b3b3b;
-  border-radius:25px;
-
-  padding:25px;
-
-  margin-top:18px;
+  padding:20px;
+  border:1px solid #333;
+  border-radius:22px
 }
 
 .summary h3{
-  font-size:27px;
-  margin-bottom:30px;
+  font-size:24px;
+  margin-bottom:22px
 }
 
-.summary-row{
+.summary-row,
+.total-row{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:14px
+}
 
-  gap:20px;
-
-  font-size:22px;
-
-  color:#bbb;
-
-  padding:15px 0;
+.summary-row{
+  color:#bbb
 }
 
 .quantity{
   display:flex;
-
   border:1px solid #444;
-  border-radius:30px;
-
-  overflow:hidden;
+  border-radius:28px;
+  overflow:hidden
 }
 
 .quantity button,
 .quantity span{
-
-  width:65px;
-  height:58px;
-
+  width:52px;
+  height:52px;
+  border:0;
+  background:#151515;
+  color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-
-  border:0;
-
-  background:#151515;
-
-  color:white;
-
-  font-size:24px;
+  font-size:21px
 }
 
 .quantity span{
-  background:#080808;
+  background:#090909
 }
 
 .total-row{
   border-top:1px solid #333;
-
-  margin-top:10px;
-  padding-top:24px;
-
-  display:flex;
-  justify-content:space-between;
-
-  font-size:26px;
+  margin-top:20px;
+  padding-top:20px;
+  font-size:22px
 }
 
 .note{
+  margin-top:12px;
   color:#777;
-  margin-top:15px;
+  font-size:14px
 }
 
+/* PACKAGES */
 
-/* =========================
-   PACKAGES
-========================= */
-
-.packages-box{
-  margin-top:30px;
-
-  border:1px solid #343434;
-  border-radius:30px;
-
-  background:#101010;
-
+.packages{
+  margin-top:25px;
+  border:1px solid #333;
+  border-radius:26px;
   overflow:hidden;
+  background:#101010
 }
 
-.package-header{
-  padding:27px;
-
-  border-bottom:1px solid #292929;
+.package-head{
+  padding:20px;
+  border-bottom:1px solid #292929
 }
 
-.package-header h2{
-  font-size:29px;
+.package-head h2{
+  font-size:24px
 }
 
 .tabs{
   display:flex;
-
-  gap:12px;
-
-  margin-top:20px;
+  gap:10px;
+  margin-top:16px
 }
 
 .tab{
   flex:1;
-
-  height:58px;
-
-  border-radius:17px;
-
+  height:50px;
   border:1px solid #444;
-
+  border-radius:14px;
   background:#151515;
-
-  color:white;
-
-  font-size:20px;
-  font-weight:bold;
+  color:#fff;
+  font-weight:700
 }
 
 .tab.active{
   background:#ed151d;
-  border-color:#ed151d;
+  border-color:#ed151d
 }
 
 .package-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-
-  gap:18px;
-
-  padding:27px;
+  gap:12px;
+  padding:16px
 }
 
 .package{
-  min-height:205px;
-
-  border:1px solid #3b3b3b;
-
-  border-radius:25px;
-
-  background:
-  radial-gradient(
-    circle at 90% 90%,
-    rgba(120,0,0,.15),
-    transparent 35%
-  ),
-  #141414;
-
-  padding:23px;
-
   position:relative;
+  min-height:175px;
+  padding:16px 14px 68px;
+  border:1px solid #333;
+  border-radius:22px;
+  background:
+    radial-gradient(circle at 100% 100%,rgba(100,0,0,.16),transparent 36%),
+    #141414
 }
 
 .package.selected{
-  border:2px solid #ff1717;
+  border:2px solid #ff1717
 }
 
 .package-name{
-  font-size:20px;
-  font-weight:bold;
-
-  line-height:1.3;
-
-  padding-right:10px;
+  font-size:16px;
+  font-weight:700;
+  line-height:1.3
 }
 
 .price{
-  margin-top:28px;
-
-  font-size:27px;
-
-  line-height:1.25;
-
+  margin-top:24px;
+  font-size:23px;
   font-weight:900;
+  line-height:1.25
 }
 
+/* ICONS - small and lower right */
 
-/* =========================
-   PACKAGE ICON
-========================= */
-
-.package-icon{
+.icon-img{
   position:absolute;
-
-  right:15px;
-  bottom:15px;
-
-  width:62px;
-  height:62px;
-
+  right:12px;
+  bottom:12px;
+  width:48px;
+  height:48px;
   object-fit:contain;
+  border-radius:6px
 }
-
-
-/* PUBG UC */
 
 .uc-icon{
-  width:68px;
-  height:68px;
+  width:48px;
+  height:48px
 }
-
-
-/* HEARTOPIA */
 
 .heart-icon{
-  width:66px;
-  height:66px;
+  width:48px;
+  height:48px
 }
 
-
-/* =========================
-   MLBB DIAMOND SPRITE
-========================= */
+/* MLBB 6 icons from one image */
 
 .diamond-icon{
-
   position:absolute;
-
-  right:14px;
-  bottom:14px;
-
-  width:68px;
-  height:68px;
-
-  background-image:
-  url("mlbb-diamond.png");
-
+  right:12px;
+  bottom:12px;
+  width:50px;
+  height:50px;
+  background-image:url("mlbb-diamond.png");
   background-repeat:no-repeat;
-
-  background-size:
-  300% 200%;
-
+  background-size:300% 200%
 }
 
+.d1{background-position:0 0}
+.d2{background-position:50% 0}
+.d3{background-position:100% 0}
+.d4{background-position:0 100%}
+.d5{background-position:50% 100%}
+.d6{background-position:100% 100%}
 
-/* top left */
-
-.diamond-1{
-  background-position:
-  0% 0%;
-}
-
-
-/* top middle */
-
-.diamond-2{
-  background-position:
-  50% 0%;
-}
-
-
-/* top right */
-
-.diamond-3{
-  background-position:
-  100% 0%;
-}
-
-
-/* bottom left */
-
-.diamond-4{
-  background-position:
-  0% 100%;
-}
-
-
-/* bottom middle */
-
-.diamond-5{
-  background-position:
-  50% 100%;
-}
-
-
-/* bottom right */
-
-.diamond-6{
-  background-position:
-  100% 100%;
-}
-
-
-/* =========================
-   PAYMENT
-========================= */
+/* PAYMENT */
 
 .payment{
-  margin-top:30px;
-
-  padding:28px;
-
-  border:1px solid #393939;
-
-  border-radius:30px;
-
-  background:#101010;
+  margin-top:25px;
+  padding:20px;
+  border:1px solid #333;
+  border-radius:26px;
+  background:#101010
 }
 
 .payment h2{
-  margin-bottom:10px;
+  font-size:25px;
+  margin-bottom:10px
 }
 
 .payment-text{
   color:#aaa;
-
-  line-height:1.5;
-
-  margin-bottom:22px;
+  line-height:1.5
 }
 
 .upload{
-  display:block;
-
-  border:1px dashed #777;
-
-  border-radius:22px;
-
-  padding:25px;
-
+  margin-top:18px;
+  padding:22px;
   text-align:center;
-
-  margin-top:15px;
-
-  color:#ddd;
-
-  background:#171717;
+  border:1px dashed #666;
+  border-radius:20px;
+  background:#171717
 }
 
 .hidden-file{
-  display:none;
+  display:none
 }
 
-.choose-file-btn{
+.choose-file{
   display:inline-block;
-
+  padding:11px 20px;
   background:#fff;
-
   color:#111;
-
-  padding:12px 22px;
-
-  border-radius:10px;
-
-  font-weight:bold;
-
-  cursor:pointer;
+  border-radius:9px;
+  font-weight:700
 }
 
 .file-name{
-  margin-top:12px;
-
+  margin-top:10px;
   color:#aaa;
-
-  font-size:14px;
-
-  word-break:break-word;
+  font-size:13px;
+  word-break:break-word
 }
 
 .preview{
-  width:100%;
-
-  max-height:350px;
-
-  object-fit:contain;
-
-  border-radius:18px;
-
-  margin-top:20px;
-
   display:none;
-
-  background:#080808;
+  width:100%;
+  max-height:320px;
+  margin-top:16px;
+  border-radius:16px;
+  object-fit:contain
 }
 
 .confirm{
   width:100%;
-
-  min-height:76px;
-
-  border:none;
-
-  border-radius:22px;
-
+  min-height:68px;
+  margin-top:18px;
+  border:0;
+  border-radius:18px;
   background:#f01820;
-
-  color:white;
-
-  font-size:24px;
-
-  font-weight:800;
-
-  margin-top:22px;
+  color:#fff;
+  font-size:20px;
+  font-weight:800
 }
 
 .confirm:disabled{
   background:#292929;
-  color:#777;
+  color:#777
 }
-
-
-/* =========================
-   SUCCESS
-========================= */
 
 .success{
   display:none;
-
-  padding:30px;
-
-  margin-top:20px;
-
+  margin-top:16px;
+  padding:20px;
   border:1px solid #175f2b;
-
+  border-radius:18px;
   background:#0c2012;
-
-  border-radius:20px;
-
-  line-height:1.6;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:600px){
-
-  .header{
-    height:105px;
-    padding:0 20px;
-  }
-
-  .logo{
-    font-size:28px;
-  }
-
-  .home,
-  .product-page{
-    padding:25px 18px;
-  }
-
-  .search{
-    height:72px;
-
-    font-size:21px;
-
-    border-radius:22px;
-  }
-
-  .title{
-    font-size:29px;
-
-    margin-top:35px;
-  }
-
-  .game-grid{
-    gap:10px;
-  }
-
-  .game-card{
-    height:210px;
-
-    border-radius:22px;
-  }
-
-  .game-name{
-    font-size:15px;
-
-    left:11px;
-    bottom:11px;
-  }
-
-  .game-label{
-    font-size:15px;
-  }
-
-  .game-icon{
-    width:110px;
-    height:110px;
-
-    flex-basis:110px;
-  }
-
-  .info-title{
-    font-size:25px;
-  }
-
-  .info-desc{
-    font-size:16px;
-  }
-
-  .order-box{
-    padding:17px;
-  }
-
-  .field{
-    height:67px;
-
-    padding:0 17px;
-
-    font-size:19px;
-  }
-
-  .package-grid{
-    padding:17px;
-
-    gap:12px;
-  }
-
-  .package{
-    min-height:175px;
-
-    padding:16px;
-  }
-
-  .package-name{
-    font-size:17px;
-  }
-
-  .price{
-    font-size:23px;
-  }
-
-  .package-icon,
-  .diamond-icon{
-    width:55px;
-    height:55px;
-  }
-
+  line-height:1.6
 }
 </style>
 </head>
 
-
 <body>
 
-
-<!-- HEADER -->
-
 <header class="header">
-
-  <div class="logo">
-
-    AL <span>GAMEPAY</span>
-
-  </div>
-
+  <div class="logo">AL <span>GAMEPAY</span></div>
 </header>
 
+<!-- HOME -->
 
-
-<!-- =========================
-     HOME PAGE
-========================= -->
-
-<section
-  id="homePage"
-  class="page active"
->
-
+<section id="homePage" class="page active">
 <div class="home">
-
 
 <input
   id="searchInput"
   class="search"
-  type="text"
   placeholder="Search games..."
   oninput="searchGames()"
 >
 
-
-<h1 class="title">
-
-  Game Top-Up
-
-</h1>
-
-
+<h1 class="title">Game Top-Up</h1>
 
 <div class="game-grid">
 
-
-<!-- PUBG -->
-
-<div
-  class="game-wrap"
-  data-name="pubg mobile"
->
-
-  <div
-    class="game-card pubg"
-    onclick="openGame('pubg')"
-  >
-
-    <div class="game-name">
-
-      PUBG Mobile
-
+  <div class="game-wrap" data-name="pubg mobile">
+    <div class="game-card pubg" onclick="openGame('pubg')">
+      <div class="game-name">PUBG Mobile</div>
     </div>
-
+    <div class="game-label">PUBG Mobile</div>
   </div>
 
-
-  <div class="game-label">
-
-    PUBG Mobile
-
-  </div>
-
-</div>
-
-
-
-<!-- MLBB -->
-
-<div
-  class="game-wrap"
-  data-name="mobile legends mlbb"
->
-
-  <div
-    class="game-card mlbb"
-    onclick="openGame('mlbb')"
-  >
-
-    <div class="game-name">
-
-      Mobile Legends
-
+  <div class="game-wrap" data-name="mobile legends mlbb">
+    <div class="game-card mlbb" onclick="openGame('mlbb')">
+      <div class="game-name">Mobile Legends</div>
     </div>
-
+    <div class="game-label">Mobile Legends</div>
   </div>
 
-
-  <div class="game-label">
-
-    Mobile Legends
-
-  </div>
-
-</div>
-
-
-
-<!-- HEARTOPIA -->
-
-<div
-  class="game-wrap"
-  data-name="heartopia"
->
-
-  <div
-    class="game-card heartopia"
-    onclick="openGame('heartopia')"
-  >
-
-    <div class="game-name">
-
-      Heartopia
-
+  <div class="game-wrap" data-name="heartopia">
+    <div class="game-card heart" onclick="openGame('heartopia')">
+      <div class="game-name">Heartopia</div>
     </div>
-
-  </div>
-
-
-  <div class="game-label">
-
-    Heartopia
-
+    <div class="game-label">Heartopia</div>
   </div>
 
 </div>
-
-
 </div>
-
-</div>
-
 </section>
 
 
+<!-- PRODUCT -->
 
-<!-- =========================
-     PRODUCT PAGE
-========================= -->
+<section id="productPage" class="page">
+<div class="product">
 
-<section
-  id="productPage"
-  class="page"
->
-
-<div class="product-page">
-
-
-<button
-  class="back"
-  onclick="goHome()"
->
-
-  ← Back to Products
-
+<button class="back" onclick="goHome()">
+← Back to Products
 </button>
-
-
 
 <div class="game-info">
 
-  <div
-    id="gameIcon"
-    class="game-icon"
-  ></div>
-
+  <div id="gameCover" class="game-cover"></div>
 
   <div>
-
-    <div
-      id="gameTitle"
-      class="info-title"
-    ></div>
-
-
-    <div
-      id="gameDesc"
-      class="info-desc"
-    ></div>
-
+    <div id="gameTitle" class="info-title"></div>
+    <div id="gameDesc" class="info-desc"></div>
   </div>
 
 </div>
 
 
-
-<!-- ORDER -->
-
 <div class="order-box">
 
-
 <div class="inputs">
-
 
 <input
   id="userId"
   class="field"
-  type="text"
   placeholder="User ID"
   oninput="validateOrder()"
 >
 
-
 <input
   id="zoneId"
   class="field"
-  type="text"
   placeholder="Zone ID"
   style="display:none"
   oninput="validateOrder()"
 >
 
-
 <input
   id="aidInput"
   class="field"
-  type="text"
   placeholder="AID"
   style="display:none"
   oninput="validateOrder()"
 >
 
-
 <input
   id="serverInput"
   class="field"
-  type="text"
   placeholder="Server"
   style="display:none"
   oninput="validateOrder()"
 >
 
-
 </div>
 
-
-
 <label class="save-row">
-
-<input
-  type="checkbox"
-  id="saveInfo"
->
-
-<span>
-
-Save ID information for next purchase on this device
-
-</span>
-
+<input type="checkbox">
+<span>Save ID information for next purchase on this device</span>
 </label>
-
 
 
 <div class="summary">
 
-
-<h3>
-
-Your Order
-
-</h3>
-
-
+<h3>Your Order</h3>
 
 <div class="summary-row">
 
-
 <span id="selectedPackageText">
-
 Select a package
-
 </span>
-
-
 
 <div class="quantity">
 
+<button onclick="changeQty(-1)">−</button>
 
-<button onclick="changeQty(-1)">
+<span id="qty">1</span>
 
-−
-
-</button>
-
-
-<span id="qty">
-
-1
-
-</span>
-
-
-<button onclick="changeQty(1)">
-
-+
-
-</button>
-
+<button onclick="changeQty(1)">+</button>
 
 </div>
 
-
 </div>
-
 
 
 <div class="total-row">
 
-<span>
+<span>Total</span>
 
-Total
-
-</span>
-
-<strong id="total">
-
-−
-
-</strong>
+<strong id="total">−</strong>
 
 </div>
-
 
 <div class="note">
-
 Max 10 per purchase.
-
-</div>
-
-
 </div>
 
 </div>
 
+</div>
 
 
 <!-- PACKAGES -->
 
-<div class="packages-box">
+<div class="packages">
 
+<div class="package-head">
 
-<div class="package-header">
+<h2>Available Packages</h2>
 
-
-<h2>
-
-Available Packages
-
-</h2>
-
-
-<div
-  id="pubgTabs"
-  class="tabs"
-  style="display:none"
->
-
+<div id="pubgTabs" class="tabs" style="display:none">
 
 <button
   id="ucTab"
   class="tab active"
   onclick="setPubgTab('uc')"
 >
-
 UC
-
 </button>
-
 
 <button
   id="packsTab"
   class="tab"
   onclick="setPubgTab('packs')"
 >
-
 Packs
-
 </button>
 
-
 </div>
 
 </div>
-
-
 
 <div
   id="packageGrid"
   class="package-grid"
 ></div>
 
-
 </div>
-
 
 
 <!-- PAYMENT -->
 
 <div class="payment">
 
-
-<h2>
-
-Payment Receipt
-
-</h2>
-
+<h2>Payment Receipt</h2>
 
 <div class="payment-text">
-
 ငွေလွှဲပြီးပါက ငွေလွှဲပြေစာ Screenshot ကို အောက်မှာထည့်ပါ။
-
 </div>
 
-
-
 <div class="upload">
-
 
 <input
   id="receipt"
@@ -1290,34 +694,24 @@ Payment Receipt
   onchange="previewReceipt(event)"
 >
 
-
 <label
   for="receipt"
-  class="choose-file-btn"
+  class="choose-file"
 >
-
 Choose File
-
 </label>
-
 
 <div
   id="fileName"
   class="file-name"
 ></div>
 
-
 </div>
-
-
 
 <img
   id="receiptPreview"
   class="preview"
-  alt="Receipt Preview"
 >
-
-
 
 <button
   id="confirmBtn"
@@ -1325,1598 +719,626 @@ Choose File
   onclick="confirmOrder()"
   disabled
 >
-
 Select a Package First
-
 </button>
-
-
 
 <div
   id="successBox"
   class="success"
 ></div>
 
-
 </div>
 
-
 </div>
-
 </section>
-
 
 
 <script>
 
-/* =========================
-   GAME DATA
-========================= */
-
-const games = {
-
+const games={
 
 pubg:{
-
   title:"PUBG Mobile",
-
   cover:"pubg.jpg",
-
-  desc:
-  "User ID ဖြည့်ပြီး Package ရွေးချယ်ပါ။",
-
+  desc:"User ID ဖြည့်ပြီး Package ရွေးချယ်ပါ။",
 
   uc:[
-
     ["60 UC",4000],
-
     ["325 UC",19900],
-
     ["660 UC",39900],
-
     ["1800 UC",99700],
-
     ["3850 UC",198400],
-
     ["8100 UC",394600]
-
   ],
 
-
   packs:[
-
     ["First Purchase Pack",3900],
-
     ["Upgradable Firearm Pack",11700],
-
     ["Mythic Emblem Pack",19600],
-
     ["Weekly Mythic Pack",11800],
-
     ["Prime - 1 Month",3900],
-
     ["Prime Plus - 1 Month",39200],
-
     ["Weekly Deal Pack 1",4000],
-
     ["Weekly Deal Pack 2",11800],
-
     ["Prime - 3 Months",11700],
-
     ["Prime - 6 Months",23500],
-
     ["Prime - 12 Months",47000],
-
     ["Prime Plus - 3 Month",117600],
-
     ["Prime Plus - 6 Months",233400],
-
     ["Prime Plus - 12 Months",467000],
-
     ["Elite Pass Plus LV1-100",107800]
-
   ]
-
 },
-
-
 
 mlbb:{
-
   title:"Mobile Legends Global",
-
   cover:"mlbb.jpg",
-
-  desc:
-  "User ID နှင့် Zone ID ဖြည့်ပြီး Package ရွေးချယ်ပါ။",
-
+  desc:"User ID နှင့် Zone ID ဖြည့်ပြီး Package ရွေးချယ်ပါ။",
 
   packages:[
-
     ["55 Diamond",3200],
-
     ["165 Diamond",9700],
-
     ["275 Diamond",15600],
-
     ["565 Diamond",32100],
-
     ["Weekly Pass",6300],
-
     ["86 Diamond",5100],
-
     ["172 Diamond",10200],
-
     ["257 Diamond",14800],
-
     ["706 Diamond",40000],
-
     ["2195 Diamond",121000],
-
     ["3688 Diamond",201800],
-
     ["5532 Diamond",304700],
-
     ["9288 Diamond",506100],
-
     ["Monthly Epic Bundle",16400],
-
     ["Weekly Elite Bundle",3200],
-
     ["Twilight Pass",33500]
-
   ]
-
 },
 
-
-
 heartopia:{
-
   title:"Heartopia",
-
   cover:"heartopia.jpg",
-
-  desc:
-  "User ID, AID နှင့် Server ဖြည့်ပြီး Package ရွေးချယ်ပါ။",
-
+  desc:"User ID, AID နှင့် Server ဖြည့်ပြီး Package ရွေးချယ်ပါ။",
 
   packages:[
-
     ["20 Heart Diamond",2400],
-
     ["60 Heart Diamond",4700],
-
     ["320 Heart Diamond",23400],
-
     ["730 Heart Diamond",47200],
-
     ["1370 Heart Diamond",88300],
-
     ["2130 Heart Diamond",136000],
-
     ["3550 Heart Diamond",224600],
-
     ["7050 Heart Diamond",436700],
-
     ["GAMG Junior Membership",2800],
-
     ["GAMG Full Membership",13800],
-
     ["Gilded Acorn Pack",23400],
-
     ["Gilded Acorn Pack Upgrade",26400],
-
     ["Premium Gilded Acorn",47200]
-
   ]
-
 }
 
 };
 
 
+let currentGame=null;
+let currentTab="uc";
+let selectedPackage=null;
+let quantity=1;
 
-let currentGame = null;
-
-let currentTab = "uc";
-
-let selectedPackage = null;
-
-let quantity = 1;
-
-
-
-/* =========================
-   OPEN GAME
-========================= */
 
 function openGame(game){
 
+currentGame=game;
+selectedPackage=null;
+quantity=1;
 
-currentGame =
-game;
+const data=games[game];
 
+homePage.classList.remove("active");
+productPage.classList.add("active");
 
-selectedPackage =
-null;
+gameTitle.textContent=data.title;
+gameDesc.textContent=data.desc;
 
-
-quantity =
-1;
-
-
-const data =
-games[game];
-
-
-
-document
-.getElementById("homePage")
-.classList
-.remove("active");
-
-
-
-document
-.getElementById("productPage")
-.classList
-.add("active");
-
-
-
-document
-.getElementById("gameTitle")
-.textContent =
-data.title;
-
-
-
-document
-.getElementById("gameDesc")
-.textContent =
-data.desc;
-
-
-
-document
-.getElementById("gameIcon")
-.style.backgroundImage =
+gameCover.style.backgroundImage=
 `url("${data.cover}")`;
 
-
-
-const userId =
-document.getElementById("userId");
-
-const zoneId =
-document.getElementById("zoneId");
-
-const aidInput =
-document.getElementById("aidInput");
-
-const serverInput =
-document.getElementById("serverInput");
-
-
-
 userId.value="";
-
 zoneId.value="";
-
 aidInput.value="";
-
 serverInput.value="";
 
+userId.style.display="block";
+zoneId.style.display="none";
+aidInput.style.display="none";
+serverInput.style.display="none";
 
-
-userId.style.display =
-"block";
-
-zoneId.style.display =
-"none";
-
-aidInput.style.display =
-"none";
-
-serverInput.style.display =
-"none";
-
-
-
-/* MLBB */
-
-if(game === "mlbb"){
-
-  zoneId.style.display =
-  "block";
-
+if(game==="mlbb"){
+  zoneId.style.display="block";
 }
 
-
-
-/* HEARTOPIA */
-
-if(game === "heartopia"){
-
-  aidInput.style.display =
-  "block";
-
-  serverInput.style.display =
-  "block";
-
+if(game==="heartopia"){
+  aidInput.style.display="block";
+  serverInput.style.display="block";
 }
 
+receipt.value="";
+fileName.textContent="";
+receiptPreview.style.display="none";
+successBox.style.display="none";
 
-
-/* RESET RECEIPT */
-
-document
-.getElementById("receipt")
-.value =
-"";
-
-
-document
-.getElementById("fileName")
-.textContent =
-"";
-
-
-document
-.getElementById("receiptPreview")
-.style.display =
-"none";
-
-
-document
-.getElementById("successBox")
-.style.display =
-"none";
-
-
-
-/* PUBG TABS */
-
-document
-.getElementById("pubgTabs")
-.style.display =
-
-game === "pubg"
+pubgTabs.style.display=
+game==="pubg"
 ? "flex"
 : "none";
 
+currentTab="uc";
 
-
-currentTab =
-"uc";
-
-
-
-if(game === "pubg"){
-
-
-document
-.getElementById("ucTab")
-.classList
-.add("active");
-
-
-document
-.getElementById("packsTab")
-.classList
-.remove("active");
-
-
+if(game==="pubg"){
+  ucTab.classList.add("active");
+  packsTab.classList.remove("active");
 }
-
-
 
 renderPackages();
-
 updateSummary();
 
-
-window.scrollTo(
-0,
-0
-);
-
+window.scrollTo(0,0);
 
 }
 
-
-
-/* =========================
-   HOME
-========================= */
 
 function goHome(){
 
+productPage.classList.remove("active");
+homePage.classList.add("active");
 
-document
-.getElementById("productPage")
-.classList
-.remove("active");
+currentGame=null;
+selectedPackage=null;
 
-
-document
-.getElementById("homePage")
-.classList
-.add("active");
-
-
-currentGame =
-null;
-
-
-selectedPackage =
-null;
-
-
-window.scrollTo(
-0,
-0
-);
-
+window.scrollTo(0,0);
 
 }
 
-
-
-/* =========================
-   SEARCH
-========================= */
 
 function searchGames(){
 
-
-const value =
-
-document
-.getElementById("searchInput")
-.value
+const value=
+searchInput.value
 .toLowerCase()
 .trim();
 
-
-
 document
-.querySelectorAll(
-".game-wrap"
-)
-.forEach(
+.querySelectorAll(".game-wrap")
+.forEach(card=>{
 
-function(card){
-
-
-const name =
-card.dataset.name;
-
-
-card.style.display =
-
-name.includes(value)
-
+card.style.display=
+card.dataset.name.includes(value)
 ? "block"
-
 : "none";
 
+});
 
 }
 
-);
-
-
-}
-
-
-
-/* =========================
-   PUBG TAB
-========================= */
 
 function setPubgTab(tab){
 
+currentTab=tab;
+selectedPackage=null;
+quantity=1;
 
-currentTab =
-tab;
-
-
-selectedPackage =
-null;
-
-
-quantity =
-1;
-
-
-
-document
-.getElementById("ucTab")
-.classList
-.toggle(
+ucTab.classList.toggle(
 "active",
-tab === "uc"
+tab==="uc"
 );
 
-
-
-document
-.getElementById("packsTab")
-.classList
-.toggle(
+packsTab.classList.toggle(
 "active",
-tab === "packs"
+tab==="packs"
 );
-
-
 
 renderPackages();
-
 updateSummary();
 
+}
+
+
+function getPackages(){
+
+if(currentGame==="pubg"){
+  return games.pubg[currentTab];
+}
+
+return games[currentGame].packages;
 
 }
 
 
+function diamondTier(name){
 
-/* =========================
-   PACKAGE LIST
-========================= */
+const match=name.match(/\d+/);
 
-function getCurrentPackages(){
+if(!match) return 2;
 
+const n=Number(match[0]);
 
-if(
-currentGame ===
-"pubg"
-){
-
-return games.pubg[
-currentTab
-];
-
-}
-
-
-return games[
-currentGame
-].packages;
-
-
-}
-
-
-
-/* =========================
-   DIAMOND LEVEL
-========================= */
-
-function getDiamondTier(name){
-
-
-const match =
-name.match(/\d+/);
-
-
-if(!match){
-
-return 2;
-
-}
-
-
-const amount =
-Number(match[0]);
-
-
-
-if(amount <= 86){
-
-return 1;
-
-}
-
-
-if(amount <= 172){
-
-return 2;
-
-}
-
-
-if(amount <= 275){
-
-return 3;
-
-}
-
-
-if(amount <= 706){
-
-return 4;
-
-}
-
-
-if(amount <= 2195){
-
-return 5;
-
-}
-
+if(n<=86) return 1;
+if(n<=172) return 2;
+if(n<=275) return 3;
+if(n<=706) return 4;
+if(n<=2195) return 5;
 
 return 6;
 
-
 }
 
 
+function packageIcon(name){
 
-/* =========================
-   PACKAGE ICON
-========================= */
-
-function getPackageIcon(name){
-
-
-/* PUBG */
-
-if(
-currentGame ===
-"pubg"
-){
+if(currentGame==="pubg"){
 
 return `
-
 <img
 src="uc.jpg"
-class="package-icon uc-icon"
-alt="UC"
+class="icon-img uc-icon"
 >
-
 `;
 
 }
 
-
-
-/* HEARTOPIA */
-
-if(
-currentGame ===
-"heartopia"
-){
+if(currentGame==="heartopia"){
 
 return `
-
 <img
 src="heartdiamond.webp"
-class="package-icon heart-icon"
-alt="Heart Diamond"
+class="icon-img heart-icon"
 >
-
 `;
 
 }
 
+if(currentGame==="mlbb"){
 
-
-/* MLBB */
-
-if(
-currentGame ===
-"mlbb"
-){
-
-
-const tier =
-getDiamondTier(name);
-
+const tier=
+diamondTier(name);
 
 return `
-
 <div
-class="diamond-icon diamond-${tier}"
-aria-label="Diamond icon"
+class="diamond-icon d${tier}"
 ></div>
-
 `;
 
 }
-
-
 
 return "";
 
 }
 
 
-
-/* =========================
-   RENDER PACKAGES
-========================= */
-
 function renderPackages(){
 
+const list=getPackages();
 
-const grid =
-document.getElementById(
-"packageGrid"
-);
+packageGrid.innerHTML="";
 
+list.forEach((item,index)=>{
 
-grid.innerHTML =
-"";
+const card=
+document.createElement("div");
 
+card.className="package";
 
-const packages =
-getCurrentPackages();
-
-
-
-packages.forEach(
-
-function(item,index){
-
-
-const card =
-document.createElement(
-"div"
-);
-
-
-card.className =
-"package";
-
-
-
-card.innerHTML = `
-
+card.innerHTML=`
 
 <div class="package-name">
-
 ${item[0]}
-
 </div>
-
 
 <div class="price">
-
 ${item[1].toLocaleString()}
-
 <br>
-
 MMK
-
 </div>
 
-
-${getPackageIcon(item[0])}
-
+${packageIcon(item[0])}
 
 `;
 
-
-
-card.onclick =
-function(){
-
-
-selectPackage(
-index,
-card
-);
-
-
-};
-
-
-
-grid.appendChild(
-card
-);
-
-
-}
-
-);
-
-
-}
-
-
-
-/* =========================
-   SELECT PACKAGE
-========================= */
-
-function selectPackage(
-index,
-card
-){
-
+card.onclick=()=>{
 
 document
 .querySelectorAll(".package")
-.forEach(
-
-function(item){
-
-item.classList.remove(
-"selected"
+.forEach(x=>
+x.classList.remove("selected")
 );
 
-}
+card.classList.add("selected");
 
-);
+selectedPackage={
+  name:item[0],
+  price:item[1]
+};
 
+quantity=1;
 
-
-card.classList.add(
-"selected"
-);
-
-
-
-const packages =
-getCurrentPackages();
-
-
-
-selectedPackage = {
-
-name:
-packages[index][0],
-
-price:
-packages[index][1]
+updateSummary();
 
 };
 
+packageGrid.appendChild(card);
 
-
-quantity =
-1;
-
-
-updateSummary();
-
+});
 
 }
 
-
-
-/* =========================
-   QUANTITY
-========================= */
 
 function changeQty(amount){
 
+if(!selectedPackage) return;
 
-if(!selectedPackage){
+quantity+=amount;
 
-return;
-
-}
-
-
-quantity +=
-amount;
-
-
-if(quantity < 1){
-
-quantity =
-1;
-
-}
-
-
-if(quantity > 10){
-
-quantity =
-10;
-
-}
-
+if(quantity<1) quantity=1;
+if(quantity>10) quantity=10;
 
 updateSummary();
 
-
 }
 
-
-
-/* =========================
-   ORDER SUMMARY
-========================= */
 
 function updateSummary(){
 
-
-document
-.getElementById("qty")
-.textContent =
-quantity;
-
-
+qty.textContent=quantity;
 
 if(!selectedPackage){
 
-
-document
-.getElementById(
-"selectedPackageText"
-)
-.textContent =
+selectedPackageText.textContent=
 "Select a package";
 
+total.textContent="−";
 
-document
-.getElementById("total")
-.textContent =
-"−";
-
-
-document
-.getElementById(
-"confirmBtn"
-)
-.textContent =
+confirmBtn.textContent=
 "Select a Package First";
 
-
 validateOrder();
-
 
 return;
 
-
 }
 
-
-
-document
-.getElementById(
-"selectedPackageText"
-)
-.textContent =
+selectedPackageText.textContent=
 selectedPackage.name;
 
-
-
-const total =
-
+total.textContent=
+(
 selectedPackage.price *
-quantity;
+quantity
+).toLocaleString()
++" MMK";
 
-
-
-document
-.getElementById("total")
-.textContent =
-
-total.toLocaleString() +
-" MMK";
-
-
-
-document
-.getElementById(
-"confirmBtn"
-)
-.textContent =
+confirmBtn.textContent=
 "Confirm Order";
-
-
 
 validateOrder();
 
-
 }
 
-
-
-/* =========================
-   RECEIPT
-========================= */
 
 function previewReceipt(event){
 
-
-const file =
+const file=
 event.target.files[0];
-
-
-const preview =
-document.getElementById(
-"receiptPreview"
-);
-
-
-const fileName =
-document.getElementById(
-"fileName"
-);
-
-
 
 if(!file){
 
-
-preview.style.display =
-"none";
-
-
-fileName.textContent =
-"";
-
-
+receiptPreview.style.display="none";
+fileName.textContent="";
 validateOrder();
-
 
 return;
 
-
 }
 
-
-
-if(
-!file.type.startsWith(
-"image/"
-)
-){
-
+if(!file.type.startsWith("image/")){
 
 alert(
 "ငွေလွှဲပြေစာ ပုံဖိုင်ကိုသာ ထည့်ပေးပါ။"
 );
 
-
-event.target.value =
-"";
-
-
-preview.style.display =
-"none";
-
-
-fileName.textContent =
-"";
-
-
-validateOrder();
-
+event.target.value="";
 
 return;
 
-
 }
 
-
-
-fileName.textContent =
+fileName.textContent=
 file.name;
 
-
-
-const reader =
+const reader=
 new FileReader();
 
+reader.onload=e=>{
 
-
-reader.onload =
-function(e){
-
-
-preview.src =
+receiptPreview.src=
 e.target.result;
 
-
-preview.style.display =
+receiptPreview.style.display=
 "block";
-
 
 };
 
-
-
-reader.readAsDataURL(
-file
-);
-
+reader.readAsDataURL(file);
 
 validateOrder();
 
-
 }
 
-
-
-/* =========================
-   VALIDATE
-========================= */
 
 function validateOrder(){
 
-
 if(!currentGame){
-
-
-document
-.getElementById(
-"confirmBtn"
-)
-.disabled =
-true;
-
-
-return;
-
-
+  confirmBtn.disabled=true;
+  return;
 }
 
+const u=userId.value.trim();
+const z=zoneId.value.trim();
+const a=aidInput.value.trim();
+const s=serverInput.value.trim();
 
+const r=
+receipt.files.length>0;
 
-const userId =
+let valid=false;
 
-document
-.getElementById("userId")
-.value
-.trim();
-
-
-
-const zoneId =
-
-document
-.getElementById("zoneId")
-.value
-.trim();
-
-
-
-const aid =
-
-document
-.getElementById("aidInput")
-.value
-.trim();
-
-
-
-const server =
-
-document
-.getElementById("serverInput")
-.value
-.trim();
-
-
-
-const receipt =
-
-document
-.getElementById("receipt")
-.files
-.length > 0;
-
-
-
-let valid =
-false;
-
-
-
-/* PUBG */
-
-if(
-currentGame ===
-"pubg"
-){
-
-
-valid =
-!!(
-selectedPackage &&
-userId &&
-receipt
-);
-
-
+if(currentGame==="pubg"){
+  valid=
+  !!(
+    selectedPackage &&
+    u &&
+    r
+  );
 }
 
-
-
-/* MLBB */
-
-if(
-currentGame ===
-"mlbb"
-){
-
-
-valid =
-!!(
-selectedPackage &&
-userId &&
-zoneId &&
-receipt
-);
-
-
+if(currentGame==="mlbb"){
+  valid=
+  !!(
+    selectedPackage &&
+    u &&
+    z &&
+    r
+  );
 }
 
-
-
-/* HEARTOPIA */
-
-if(
-currentGame ===
-"heartopia"
-){
-
-
-valid =
-!!(
-selectedPackage &&
-userId &&
-aid &&
-server &&
-receipt
-);
-
-
+if(currentGame==="heartopia"){
+  valid=
+  !!(
+    selectedPackage &&
+    u &&
+    a &&
+    s &&
+    r
+  );
 }
 
-
-
-document
-.getElementById(
-"confirmBtn"
-)
-.disabled =
+confirmBtn.disabled=
 !valid;
 
-
 }
 
 
-
-/* =========================
-   CONFIRM
-========================= */
-
 function confirmOrder(){
-
 
 if(
 !currentGame ||
 !selectedPackage
 ){
-
 return;
-
 }
 
+const u=
+userId.value.trim();
 
+const z=
+zoneId.value.trim();
 
-const userId =
+const a=
+aidInput.value.trim();
 
-document
-.getElementById("userId")
-.value
-.trim();
+const s=
+serverInput.value.trim();
 
+const receiptFile=
+receipt.files[0];
 
-
-const zoneId =
-
-document
-.getElementById("zoneId")
-.value
-.trim();
-
-
-
-const aid =
-
-document
-.getElementById("aidInput")
-.value
-.trim();
-
-
-
-const server =
-
-document
-.getElementById("serverInput")
-.value
-.trim();
-
-
-
-const receipt =
-
-document
-.getElementById("receipt")
-.files[0];
-
-
-
-if(!userId){
-
-
-alert(
-"User ID ဖြည့်ပေးပါ။"
-);
-
-
-return;
-
-
-}
-
-
-
-if(
-currentGame ===
-"mlbb" &&
-!zoneId
-){
-
-
-alert(
-"Zone ID ဖြည့်ပေးပါ။"
-);
-
-
-return;
-
-
-}
-
-
-
-if(
-currentGame ===
-"heartopia" &&
-!aid
-){
-
-
-alert(
-"AID ဖြည့်ပေးပါ။"
-);
-
-
-return;
-
-
-}
-
-
-
-if(
-currentGame ===
-"heartopia" &&
-!server
-){
-
-
-alert(
-"Server ဖြည့်ပေးပါ။"
-);
-
-
-return;
-
-
-}
-
-
-
-if(!receipt){
-
-
-alert(
-"ငွေလွှဲပြေစာ ထည့်ပေးပါ။"
-);
-
-
-return;
-
-
-}
-
-
-
-const total =
-
+const orderTotal=
 selectedPackage.price *
 quantity;
 
+let extra="";
 
+if(currentGame==="mlbb"){
 
-const successBox =
-
-document
-.getElementById(
-"successBox"
-);
-
-
-
-let extra =
-"";
-
-
-
-if(
-currentGame ===
-"mlbb"
-){
-
-
-extra +=
-
-"Zone ID: " +
-escapeHTML(zoneId) +
-"<br>";
-
+extra+=
+`Zone ID: ${safe(z)}<br>`;
 
 }
 
+if(currentGame==="heartopia"){
 
+extra+=
+`AID: ${safe(a)}<br>`;
 
-if(
-currentGame ===
-"heartopia"
-){
-
-
-extra +=
-
-"AID: " +
-escapeHTML(aid) +
-"<br>";
-
-
-extra +=
-
-"Server: " +
-escapeHTML(server) +
-"<br>";
-
+extra+=
+`Server: ${safe(s)}<br>`;
 
 }
 
-
-
-successBox.style.display =
+successBox.style.display=
 "block";
 
-
-
-successBox.innerHTML = `
-
+successBox.innerHTML=`
 
 <strong>
-
 Order Confirmed ✓
-
 </strong>
 
-
 <br><br>
-
 
 Game:
 ${games[currentGame].title}
 
-
 <br>
-
 
 User ID:
-${escapeHTML(userId)}
-
+${safe(u)}
 
 <br>
-
 
 ${extra}
 
-
 Package:
-${escapeHTML(
-selectedPackage.name
-)}
-
+${safe(selectedPackage.name)}
 
 <br>
-
 
 Quantity:
 ${quantity}
 
-
 <br>
-
 
 Total:
-${total.toLocaleString()}
+${orderTotal.toLocaleString()}
 MMK
-
 
 <br>
 
-
 Receipt:
-${escapeHTML(
-receipt.name
-)}
-
+${safe(receiptFile.name)}
 
 `;
 
-
-
 successBox.scrollIntoView({
-
-behavior:"smooth",
-
-block:"center"
-
+  behavior:"smooth",
+  block:"center"
 });
-
 
 }
 
 
-
-/* =========================
-   SECURITY
-========================= */
-
-function escapeHTML(value){
-
+function safe(value){
 
 return String(value)
 
-.replaceAll(
-"&",
-"&amp;"
-)
-
-.replaceAll(
-"<",
-"&lt;"
-)
-
-.replaceAll(
-">",
-"&gt;"
-)
-
-.replaceAll(
-'"',
-"&quot;"
-)
-
-.replaceAll(
-"'",
-"&#039;"
-);
-
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 
 }
 
 </script>
 
 </body>
-  </html>
+</html>
