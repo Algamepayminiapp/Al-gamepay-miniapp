@@ -32,10 +32,10 @@ export async function POST(request) {
     }
 
     if (!game || !packageName || !total) {
-      return Response.json(
-        { ok: false, error: "Order information is incomplete." },
-        { status: 400 }
-      );
+  return Response.json(
+    { ok: false, error: "Order information is incomplete." },
+    { status: 400 }
+  );
     }
 
     const lines = [
