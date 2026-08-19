@@ -215,10 +215,6 @@ button{
   color:#888;
 }
 
-.full{
-  grid-column:1/-1;
-}
-
 .summary{
   border:1px solid #3b3b3b;
   border-radius:25px;
@@ -381,6 +377,69 @@ button{
   margin:12px 0 20px;
 }
 
+.payment-methods{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:20px 0;
+}
+
+.payment-method-btn{
+  min-height:65px;
+  border-radius:18px;
+  border:1px solid #444;
+  background:#181818;
+  color:#fff;
+  font-size:18px;
+  font-weight:800;
+}
+
+.payment-method-btn.active{
+  border:2px solid #ff1717;
+  background:#251010;
+}
+
+.payment-account{
+  display:none;
+  margin:18px 0 24px;
+  padding:20px;
+  border:1px solid #3b3b3b;
+  border-radius:20px;
+  background:#151515;
+}
+
+.payment-account.show{
+  display:block;
+}
+
+.payment-account h3{
+  margin-bottom:15px;
+  font-size:22px;
+}
+
+.account-row{
+  margin-top:10px;
+  color:#aaa;
+  line-height:1.6;
+}
+
+.account-value{
+  color:#fff;
+  font-size:19px;
+  font-weight:800;
+}
+
+.copy-btn{
+  width:100%;
+  min-height:50px;
+  margin-top:16px;
+  border:1px solid #555;
+  border-radius:14px;
+  background:#222;
+  color:#fff;
+  font-weight:bold;
+}
+
 .custom-file{
   display:inline-block;
   padding:15px 24px;
@@ -536,7 +595,6 @@ button{
   <div class="logo">AL <span>GAMEPAY</span></div>
 </header>
 
-<!-- HOME -->
 <section id="homePage" class="page active">
   <div class="home">
 
@@ -586,7 +644,6 @@ button{
   </div>
 </section>
 
-<!-- PRODUCT PAGE -->
 <section id="productPage" class="page">
   <div class="product-page">
 
@@ -688,10 +745,62 @@ button{
 
     <div class="payment">
 
-      <h2>Payment Receipt</h2>
+      <h2>Payment Method</h2>
 
       <div class="payment-text">
-        ငွေလွှဲပြီးပါက ငွေလွှဲပြေစာ Screenshot ကို ထည့်ပေးပါ။
+        ငွေပေးချေမည့် နည်းလမ်းကို အရင်ရွေးပါ။
+      </div>
+
+      <div class="payment-methods">
+
+        <button
+          type="button"
+          id="kbzBtn"
+          class="payment-method-btn"
+          onclick="selectPaymentMethod('KBZPay')"
+        >
+          KBZPay
+        </button>
+
+        <button
+          type="button"
+          id="waveBtn"
+          class="payment-method-btn"
+          onclick="selectPaymentMethod('Wave Money')"
+        >
+          Wave Money
+        </button>
+
+      </div>
+
+      <div id="paymentAccount" class="payment-account">
+
+        <h3 id="paymentAccountTitle"></h3>
+
+        <div class="account-row">
+          Account Name:<br>
+          <span class="account-value">AUNG PYAE SONE</span>
+        </div>
+
+        <div class="account-row">
+          Phone Number:<br>
+          <span class="account-value">09966314550</span>
+        </div>
+
+        <button
+          type="button"
+          class="copy-btn"
+          onclick="copyPaymentNumber()"
+        >
+          Copy Number
+        </button>
+
+      </div>
+
+      <h2 style="margin-top:28px;">Payment Receipt</h2>
+
+      <div class="payment-text">
+        အပေါ်ပါ Account သို့ ငွေလွှဲပြီးပါက ငွေလွှဲပြေစာ Screenshot ကို ထည့်ပေးပါ။
       </div>
 
       <label class="custom-file">
@@ -811,19 +920,23 @@ let currentGame = null;
 let currentTab = "uc";
 let selectedPackage = null;
 let quantity = 1;
+let selectedPaymentMethod = "";
 
-
-/* OPEN GAME */
 function openGame(game){
 
   currentGame = game;
   selectedPackage = null;
   quantity = 1;
+  selectedPaymentMethod = "";
 
-  const data = games[game];
+  document.getElementById("kbzBtn").classList.remove("active");
+  document.getElementById("waveBtn").classList.remove("active");
+  document.getElementById("paymentAccount").classList.remove("show");
 
   document.getElementById("homePage").classList.remove("active");
   document.getElementById("productPage").classList.add("active");
+
+  const data = games[game];
 
   document.getElementById("gameTitle").textContent = data.title;
   document.getElementById("gameDesc").textContent = data.desc;
@@ -877,8 +990,6 @@ function openGame(game){
   window.scrollTo(0,0);
 }
 
-
-/* HOME */
 function goHome(){
 
   document.getElementById("productPage").classList.remove("active");
@@ -890,8 +1001,6 @@ function goHome(){
   window.scrollTo(0,0);
 }
 
-
-/* SEARCH */
 function searchGames(){
 
   const value =
@@ -910,8 +1019,6 @@ function searchGames(){
   });
 }
 
-
-/* PUBG TABS */
 function setPubgTab(tab){
 
   currentTab = tab;
@@ -927,8 +1034,6 @@ function setPubgTab(tab){
   updateSummary();
 }
 
-
-/* PACKAGE LIST */
 function getCurrentPackages(){
 
   if(currentGame === "pubg"){
@@ -938,12 +1043,10 @@ function getCurrentPackages(){
   return games[currentGame].packages;
 }
 
-
-/* PACKAGE ICON */
 function getPackageIcon(){
 
   if(currentGame === "pubg"){
-    return currentTab === "uc" ? "uc.jpg" : "uc.jpg";
+    return "uc.jpg";
   }
 
   if(currentGame === "mlbb"){
@@ -957,8 +1060,6 @@ function getPackageIcon(){
   return "";
 }
 
-
-/* RENDER */
 function renderPackages(){
 
   const grid = document.getElementById("packageGrid");
@@ -997,8 +1098,6 @@ function renderPackages(){
 
 }
 
-
-/* SELECT PACKAGE */
 function selectPackage(index,card){
 
   document.querySelectorAll(".package")
@@ -1016,8 +1115,6 @@ function selectPackage(index,card){
   updateSummary();
 }
 
-
-/* QTY */
 function changeQty(amount){
 
   quantity += amount;
@@ -1028,8 +1125,6 @@ function changeQty(amount){
   updateSummary();
 }
 
-
-/* SUMMARY */
 function updateSummary(){
 
   document.getElementById("qty").textContent = quantity;
@@ -1063,8 +1158,37 @@ function updateSummary(){
   validateOrder();
 }
 
+function selectPaymentMethod(method){
 
-/* RECEIPT */
+  selectedPaymentMethod = method;
+
+  document.getElementById("kbzBtn")
+    .classList.toggle("active", method === "KBZPay");
+
+  document.getElementById("waveBtn")
+    .classList.toggle("active", method === "Wave Money");
+
+  document.getElementById("paymentAccountTitle")
+    .textContent = method;
+
+  document.getElementById("paymentAccount")
+    .classList.add("show");
+
+  validateOrder();
+}
+
+async function copyPaymentNumber(){
+
+  const number = "09966314550";
+
+  try{
+    await navigator.clipboard.writeText(number);
+    alert("Payment number copied ✓");
+  }catch(error){
+    alert("Number: " + number);
+  }
+}
+
 function previewReceipt(event){
 
   const file = event.target.files[0];
@@ -1088,8 +1212,6 @@ function previewReceipt(event){
   validateOrder();
 }
 
-
-/* VALIDATION */
 function validateOrder(){
 
   const userId =
@@ -1110,11 +1232,20 @@ function validateOrder(){
   let valid = false;
 
   if(currentGame === "pubg"){
-    valid = selectedPackage && userId && receipt;
+    valid =
+      selectedPackage &&
+      userId &&
+      selectedPaymentMethod &&
+      receipt;
   }
 
   if(currentGame === "mlbb"){
-    valid = selectedPackage && userId && zoneId && receipt;
+    valid =
+      selectedPackage &&
+      userId &&
+      zoneId &&
+      selectedPaymentMethod &&
+      receipt;
   }
 
   if(currentGame === "heartopia"){
@@ -1123,18 +1254,22 @@ function validateOrder(){
       userId &&
       aid &&
       server &&
+      selectedPaymentMethod &&
       receipt;
   }
 
   document.getElementById("confirmBtn").disabled = !valid;
 }
 
-
-/* CONFIRM */
 async function confirmOrder(){
 
   if(!selectedPackage){
     alert("Package ရွေးပေးပါ။");
+    return;
+  }
+
+  if(!selectedPaymentMethod){
+    alert("Payment Method ရွေးပေးပါ။");
     return;
   }
 
@@ -1223,6 +1358,11 @@ async function confirmOrder(){
     );
 
     formData.append(
+      "paymentMethod",
+      selectedPaymentMethod
+    );
+
+    formData.append(
       "total",
       total.toLocaleString() + " MMK"
     );
@@ -1278,7 +1418,6 @@ async function confirmOrder(){
       <br><br>
 
       Game: ${games[currentGame].title}<br>
-
       ${idText}
 
       Package:
@@ -1287,6 +1426,10 @@ async function confirmOrder(){
 
       Quantity:
       ${quantity}
+      <br>
+
+      Payment Method:
+      ${escapeHTML(selectedPaymentMethod)}
       <br>
 
       Total:
@@ -1317,7 +1460,6 @@ async function confirmOrder(){
   }
 }
 
-/* SECURITY */
 function escapeHTML(value){
 
   return String(value)
@@ -1328,14 +1470,15 @@ function escapeHTML(value){
     .replaceAll("'","&#039;");
 }
 </script>
+
 <!-- CONTACT OWNER -->
 <div style="
-  margin: 35px 20px;
-  padding: 22px;
-  background: #111;
-  border: 1px solid #333;
-  border-radius: 20px;
-  text-align: center;
+  margin:35px 20px;
+  padding:22px;
+  background:#111;
+  border:1px solid #333;
+  border-radius:20px;
+  text-align:center;
 ">
   <h2 style="margin-bottom:8px;">ဆက်သွယ်ရန်</h2>
 
@@ -1388,5 +1531,6 @@ function escapeHTML(value){
      📞 09966314550
   </a>
 </div>
+
 </body>
-</html>
+  </html>
