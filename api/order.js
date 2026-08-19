@@ -18,7 +18,9 @@ export async function POST(request) {
     const zoneId = clean(form.get("zoneId"));
     const aid = clean(form.get("aid"));
     const server = clean(form.get("server"));
-    const packageName = clean(form.get("packageName"));
+    const packageName = clean(
+  form.get("packageName") || form.get("package")
+);
     const quantity = clean(form.get("quantity"));
     const total = clean(form.get("total"));
 
