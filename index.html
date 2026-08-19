@@ -1131,7 +1131,7 @@ function validateOrder(){
 
 
 /* CONFIRM */
-function confirmOrder(){
+async function confirmOrder(){
 
   if(!selectedPackage){
     alert("Package ရွေးပေးပါ။");
@@ -1172,58 +1172,150 @@ function confirmOrder(){
   }
 
   if(!receipt){
-    alert("ငွေလွှဲပြေစာ ထည့်ပေးပါ။");
+    alert("ငွေလွှဲပြေစာ Screenshot ထည့်ပေးပါ။");
     return;
   }
 
   const total = selectedPackage.price * quantity;
 
-  const successBox =
-    document.getElementById("successBox");
+  const btn = document.getElementById("confirmBtn");
 
-  let idText = "";
+  btn.disabled = true;
+  btn.textContent = "Sending Order...";
 
-  if(currentGame === "pubg"){
-    idText = `
-      User ID: ${escapeHTML(userId)}<br>
+  try{
+
+    const formData = new FormData();
+
+    formData.append(
+      "game",
+      games[currentGame].title
+    );
+
+    formData.append(
+      "userId",
+      userId
+    );
+
+    formData.append(
+      "zoneId",
+      zoneId
+    );
+
+    formData.append(
+      "aid",
+      aid
+    );
+
+    formData.append(
+      "server",
+      server
+    );
+
+    formData.append(
+      "package",
+      selectedPackage.name
+    );
+
+    formData.append(
+      "quantity",
+      quantity.toString()
+    );
+
+    formData.append(
+      "total",
+      total.toLocaleString() + " MMK"
+    );
+
+    formData.append(
+      "receipt",
+      receipt
+    );
+
+    const response = await fetch(
+      "/api/order",
+      {
+        method:"POST",
+        body:formData
+      }
+    );
+
+    const data = await response.json();
+
+    if(!response.ok || !data.ok){
+      throw new Error(
+        data.error || "Order sending failed."
+      );
+    }
+
+    const successBox =
+      document.getElementById("successBox");
+
+    let idText = "";
+
+    if(currentGame === "pubg"){
+      idText =
+        `User ID: ${escapeHTML(userId)}<br>`;
+    }
+
+    if(currentGame === "mlbb"){
+      idText =
+        `User ID: ${escapeHTML(userId)}<br>` +
+        `Zone ID: ${escapeHTML(zoneId)}<br>`;
+    }
+
+    if(currentGame === "heartopia"){
+      idText =
+        `User ID: ${escapeHTML(userId)}<br>` +
+        `AID: ${escapeHTML(aid)}<br>` +
+        `Server: ${escapeHTML(server)}<br>`;
+    }
+
+    successBox.style.display = "block";
+
+    successBox.innerHTML = `
+      <strong>Order Sent Successfully ✓</strong>
+      <br><br>
+
+      Game: ${games[currentGame].title}<br>
+
+      ${idText}
+
+      Package:
+      ${escapeHTML(selectedPackage.name)}
+      <br>
+
+      Quantity:
+      ${quantity}
+      <br>
+
+      Total:
+      ${total.toLocaleString()} MMK
+      <br><br>
+
+      Telegram သို့ Order ပို့ပြီးပါပြီ။
     `;
+
+    successBox.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+    btn.textContent = "Order Sent ✓";
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Order ပို့မရပါ။\n\n" +
+      error.message
+    );
+
+    btn.disabled = false;
+    btn.textContent = "Confirm Order";
   }
-
-  if(currentGame === "mlbb"){
-    idText = `
-      User ID: ${escapeHTML(userId)}<br>
-      Zone ID: ${escapeHTML(zoneId)}<br>
-    `;
-  }
-
-  if(currentGame === "heartopia"){
-    idText = `
-      User ID: ${escapeHTML(userId)}<br>
-      AID: ${escapeHTML(aid)}<br>
-      Server: ${escapeHTML(server)}<br>
-    `;
-  }
-
-  successBox.style.display = "block";
-
-  successBox.innerHTML = `
-    <strong>Order Confirmed ✓</strong><br><br>
-
-    Game: ${games[currentGame].title}<br>
-    ${idText}
-
-    Package: ${escapeHTML(selectedPackage.name)}<br>
-    Quantity: ${quantity}<br>
-    Total: ${total.toLocaleString()} MMK<br>
-    Receipt: ${escapeHTML(receipt.name)}
-  `;
-
-  successBox.scrollIntoView({
-    behavior:"smooth",
-    block:"center"
-  });
 }
-
 
 /* SECURITY */
 function escapeHTML(value){
